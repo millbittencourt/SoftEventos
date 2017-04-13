@@ -9,9 +9,30 @@ public class UsuarioDAO {
 	
 	private static EntityManager banco = BancoUtil.getInstancia().getConexcao().createEntityManager();
 	
-	public static boolean Autenticar(Usuario usuario){
+	public static Usuario Autenticar(Usuario usuario){
 		
-		boolean permissao = false;
+		String hql = "SELECT us FROM ususarios As us WHERE us.login=:login AND us.senha=:senha";
+		
+		Usuario aux = null;
+		
+		try {
+			
+			aux = (Usuario) banco.createQuery(hql)
+					.setParameter("login", usuario.getLogin())
+					.setParameter("senha", usuario.getSenha())
+					.getSingleResult();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return aux;
+		
+	}
+	
+	public static boolean isExists(Usuario usuario){
+		
+		boolean existe = false;
 		
 		String hql = "SELECT us FROM ususarios As us WHERE us.login=:login AND us.senha=:senha";
 		
@@ -22,13 +43,13 @@ public class UsuarioDAO {
 					.setParameter("senha", usuario.getSenha())
 					.getSingleResult();
 			
-			permissao = aux != null;
+			existe = aux != null;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return permissao;
+		return existe;
 		
 	}
 	

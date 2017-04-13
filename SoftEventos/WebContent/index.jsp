@@ -13,6 +13,7 @@
     	<ul> 
     	<li> <a href="eventos.jsp"> Eventos </a> </li>
     	<li> <a href="login.jsp"> Login </a></li>
+    	<li> <a href="cadastar-evento.jsp"> Login </a></li>
     	</ul>
     	</nav>
 

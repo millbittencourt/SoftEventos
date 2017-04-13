@@ -22,8 +22,17 @@ public class AutenticarUsuario extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UsuarioDAO.teste();
+		Usuario usuario = new Usuario(request.getParameter("login"), request.getParameter("senha"));
 		
+		usuario = UsuarioDAO.Autenticar(usuario);
+		
+		if(usuario != null){
+
+			request.getSession().setAttribute("usuario", usuario );
+			response.sendRedirect("index.jsp");
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+			
+		}
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

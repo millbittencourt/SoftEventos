@@ -9,6 +9,15 @@
 
 <form method="POST" action="AutenticarUsuario"> 
 
+
+    	<nav>
+    	<ul> 
+    	<li> <a href="eventos.jsp"> Eventos </a> </li>
+    	<li> <a href="login.jsp"> Login </a></li>
+    	<li> <a href="cadastar-evento.jsp"> Login </a></li>
+    	</ul>
+    	</nav>
+
 <p> 
 	Login: <br>
  <input type="text" name="login" placeholder="Login">
