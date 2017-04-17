@@ -1,7 +1,8 @@
-package br.com.ucsal.DAO;
+package br.com.ucsal.dao;
 
 import javax.persistence.EntityManager;
-import br.com.ucsal.DAO.BancoUtil;
+
+import br.com.ucsal.dao.BancoUtil;
 import br.com.ucsal.model.Administrador;
 import br.com.ucsal.model.Usuario;
 
@@ -9,9 +10,9 @@ public class UsuarioDAO {
 	
 	private static EntityManager banco = BancoUtil.getInstancia().getConexcao().createEntityManager();
 	
-	public static Usuario Autenticar(Usuario usuario){
+	public static Usuario autenticar(Usuario usuario){
 		
-		String hql = "SELECT us FROM ususarios As us WHERE us.login=:login AND us.senha=:senha";
+		String hql = "SELECT us FROM Usuario As us WHERE us.login=:login AND us.senha=:senha";
 		
 		Usuario aux = null;
 		
@@ -34,7 +35,7 @@ public class UsuarioDAO {
 		
 		boolean existe = false;
 		
-		String hql = "SELECT us FROM ususarios As us WHERE us.login=:login AND us.senha=:senha";
+		String hql = "SELECT us FROM Usuario As us WHERE us.login=:login AND us.senha=:senha";
 		
 		try {
 			

@@ -1,5 +1,8 @@
 package br.com.ucsal.controller;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.ucsal.DAO.EventoDAO;
+import br.com.ucsal.dao.EventoDAO;
+import br.com.ucsal.dao.UsuarioDAO;
 import br.com.ucsal.model.Evento;
 
 /**
@@ -22,18 +26,46 @@ public class CadastarEvento extends HttpServlet {
      */
     public CadastarEvento() {
         super();
-        // TODO Auto-generated constructor stub
+     
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Evento ev = new Evento( request.getParameter("nome"),  request.getParameter("horario"), 
-				request.getParameter("local"), request.getParameter("descricao"), 
-				request.getParameter("organizador"),  request.getParameter("palestrante"), 
+		
+	
+		
+		SimpleDateFormat fData = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
+		
+		Date data = null;
+		Date hora = null;
+		
+		try {
+			
+			data = fData.parse(request.getParameter("data"));
+			hora = fHora.parse(request.getParameter("hora"));
+			
+		} catch (Exception e) {
+			System.out.println("Erro: Cadastrar Evento - Hora e Data");
+			e.printStackTrace();
+		}
+		
+		
+		Evento evento = new Evento(
+				request.getParameter("nome"),  
+				request.getParameter("local"), 
+				data, 
+				hora, 
+				request.getParameter("descricao"),
+				request.getParameter("organizador"),
+				request.getParameter("palestrante"),
 				Integer.parseInt(request.getParameter("qtd")));
-		EventoDAO.create(ev);
+		
+		UsuarioDAO.teste();
+		EventoDAO.criarEvento(evento);
+		
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -42,7 +74,6 @@ public class CadastarEvento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -16,6 +16,7 @@ public class Usuario {
 	private String email;
 
 	public Usuario() {
+	
 	}
 
 	public Usuario(String login, String senha) {

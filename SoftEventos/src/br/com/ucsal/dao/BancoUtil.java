@@ -1,4 +1,4 @@
-package br.com.ucsal.DAO;
+package br.com.ucsal.dao;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

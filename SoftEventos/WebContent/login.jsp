@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,17 +8,9 @@
 	<title> Login </title>
 </head>
 <body>
-
+<c:import url="nav.html"></c:import>
+    	
 <form method="POST" action="AutenticarUsuario"> 
-
-
-    	<nav>
-    	<ul> 
-    	<li> <a href="eventos.jsp"> Eventos </a> </li>
-    	<li> <a href="login.jsp"> Login </a></li>
-    	<li> <a href="cadastar-evento.jsp"> Login </a></li>
-    	</ul>
-    	</nav>
 
 <p> 
 	Login: <br>
