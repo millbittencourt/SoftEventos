@@ -1,6 +1,9 @@
+<%@page import="br.com.ucsal.model.Professor"%>
+<%@page import="br.com.ucsal.model.Aluno"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -8,12 +11,21 @@
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 
 <title>SoftEventos</title>
+<jsp:useBean id="usuario" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
 </head>
 <body>
 
 	<c:import url="nav.html"></c:import>
-
-
+	
+	<c:if test="${usuario != null}">
+		<c:if test="<%=usuario instanceof Aluno%>">
+		<a href="home_aluno.jsp"> Home </a>
+		</c:if>
+		<c:if test="<%=usuario instanceof Professor%>">
+		<a href="home_professor.jsp"> Home </a>
+		</c:if>
+	</c:if>
+	<br>
 	<main>
 
 	<section>Quem somos nós?</section>

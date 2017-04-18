@@ -11,7 +11,7 @@
 <body>
 	<c:import url="nav.html"></c:import>
 
-	<form action="ModificarAluno" method="post">
+	<form action="CadastrarAluno" method="post">
 
 		<p>
 			Login: <br> <input type="text" name="login" placeholder="Login">
@@ -25,6 +25,16 @@
 
 		<p>
 			Email: <br> <input type="email" name="email" placeholder="Email">
+		</p>
+
+		<p>
+			Nome: <br> <input type="text" name="nome" placeholder="Nome"
+				required>
+		</p>
+
+		<p>
+			CPF: <br> <input type="text" name="cpf" placeholder="CPF"
+				required>
 		</p>
 
 		<p>
