@@ -20,60 +20,55 @@ import br.com.ucsal.model.Evento;
 @WebServlet("/CadastarEvento")
 public class CadastarEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CadastarEvento() {
-        super();
-     
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	
-		
+	public CadastarEvento() {
+		super();
+
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		SimpleDateFormat fData = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
-		
+
 		Date data = null;
 		Date hora = null;
-		
+
 		try {
-			
+
 			data = fData.parse(request.getParameter("data"));
 			hora = fHora.parse(request.getParameter("hora"));
-			
+
 		} catch (Exception e) {
 			System.out.println("Erro: Cadastrar Evento - Hora e Data");
 			e.printStackTrace();
 		}
-		
-		
-		Evento evento = new Evento(
-				request.getParameter("nome"),  
-				request.getParameter("local"), 
-				data, 
-				hora, 
-				request.getParameter("descricao"),
-				request.getParameter("organizador"),
-				request.getParameter("palestrante"),
-				Integer.parseInt(request.getParameter("qtd")));
-		
-		UsuarioDAO.teste();
+
+		Evento evento = new Evento(request.getParameter("nome"), request.getParameter("local"), data, hora,
+				request.getParameter("descricao"), request.getParameter("organizador"),
+				request.getParameter("palestrante"), Integer.parseInt(request.getParameter("qtd")));
+
 		EventoDAO.criarEvento(evento);
-		
-		
+
+		response.sendRedirect("eventos.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -16,8 +16,8 @@ public class Professor extends Usuario {
 
 	}
 
-	public Professor(String login, String senha, String nome, String cpf, String telefone) {
-		super(login, senha);
+	public Professor(String login, String senha, String email, String nome, String cpf, String telefone) {
+		super(login, senha, email);
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;

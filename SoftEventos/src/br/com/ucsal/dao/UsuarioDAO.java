@@ -54,14 +54,6 @@ public class UsuarioDAO {
 		
 	}
 	
-	public static void teste(){
-		
-		Administrador ad = new Administrador("beta", "456", 1);
-		
-		banco.getTransaction().begin();
-		banco.persist(ad);
-		banco.getTransaction().commit();
-		
-	}
+	
 	
 }

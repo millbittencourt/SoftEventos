@@ -10,7 +10,7 @@
 <body>
 <c:import url="nav.html"></c:import>
 
-<form action="CadastarEvento" method="post">
+<form action="CadastrarEvento" method="post">
 
 <p> 
 	Nome: <br>

@@ -1,32 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-    <html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 
-    	<title> SoftEventos </title>
-    </head>
-    <body>
-    	
-    	<c:import url="nav.html"></c:import>
-    	
-    	
-    	<main> 
-    	
-    	<section> Quem somos nós? </section>
+<title>SoftEventos</title>
+</head>
+<body>
 
-    	<div> <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    	</p> </div>
-    	
-    	</main>
+	<c:import url="nav.html"></c:import>
 
 
-    </body>
-    </html>    
+	<main>
+
+	<section>Quem somos nós?</section>
+
+	<div>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+			do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+			enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+			ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+			pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+			culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+
+	</main>
+
+
+</body>
+</html>

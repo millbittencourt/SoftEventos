@@ -3,24 +3,31 @@ package br.com.ucsal.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Usuarios")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name = "Usuarios")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String login;
 	private String senha;
 	private String email;
 
 	public Usuario() {
-	
+
 	}
 
 	public Usuario(String login, String senha) {
 		super();
+		this.login = login;
+		this.senha = senha;
+	}
+
+	public Usuario(String login, String senha, String email) {
+		super();
+		this.email = email;
 		this.login = login;
 		this.senha = senha;
 	}

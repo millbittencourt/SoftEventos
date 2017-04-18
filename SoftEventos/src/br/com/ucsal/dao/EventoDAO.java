@@ -21,7 +21,6 @@ public class EventoDAO {
 		banco.getTransaction().commit();
 	}
 	
-
 	public static List<Evento> getEventos(){
 		
 		List<Evento> eventos = (List<Evento>) banco.createQuery("from Evento").getResultList();
@@ -30,21 +29,22 @@ public class EventoDAO {
 	
 	public static Evento getEvento(long id){
 		
-		String hql = "SELECT ev FROM Evento As ev WHERE ev.id=:id";
+
+		banco.getTransaction().begin();
+		Evento evento = banco.find(Evento.class, id);
+		banco.getTransaction().commit();
+	
 		
-		Evento aux = null;
+		return evento;
 		
-		try {
-			
-			aux = (Evento) banco.createQuery(hql)
-					.setParameter("id", id)
-					.getSingleResult();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	}
+	
+	public static void modificarEvento(Evento evento){
 		
-		return aux;
+		banco.getTransaction().begin();
+		banco.merge(evento);
+		banco.getTransaction().commit();
+		
 		
 	}
 }

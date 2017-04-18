@@ -27,7 +27,8 @@
 			<li>${evento.palestrante}</li>
 			<li>${evento.local}</li>
 		</ul>
-		<a href="evento.jsp/?id=${evento.id}" alt="Ver Mais">Ver Mais</a>
+		aba
+		<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">Ver Mais</a>
 	</div>
 </c:forEach>
 
