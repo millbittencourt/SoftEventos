@@ -54,6 +54,13 @@ public class UsuarioDAO {
 		
 	}
 	
+	public static void removerUsusario(Usuario usuario){
+		
+		banco.getTransaction().begin();
+		banco.remove(usuario);
+		banco.getTransaction().commit();
+	}
+	
 	
 	
 }

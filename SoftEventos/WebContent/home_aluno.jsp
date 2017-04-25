@@ -15,9 +15,9 @@
 	
 	Bem vindo: <c:out value="${usuario.nome}"></c:out> 
 	<c:import url="nav.html"></c:import>
-
-	<a href="modificar_aluno.jsp"> Modificar Conta</a>
-
-
+	<ul>
+	<li> <a href="modificar_aluno.jsp"> Modificar Conta</a> </li>
+	<li> <a href="deletar_conta.jsp" > Deletar Conta </a> </li>
+	</ul>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="br.com.ucsal.dao.EventoDAO"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,8 @@
 	<div class="evento" id="${evento.id}">
 		<h3>${evento.nome}</h3>
 		<ul>
-			<li>${evento.data}</li>
+			<li> <fmt:formatDate pattern="dd-MM-yyyy" 
+            value="${evento.data}" /></li>
 			<li>${evento.palestrante}</li>
 			<li>${evento.local}</li>
 		</ul>

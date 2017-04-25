@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import br.com.ucsal.model.Evento;
+import br.com.ucsal.model.Professor;
 import br.com.ucsal.model.Usuario;
 
 public class EventoDAO {
@@ -23,7 +24,10 @@ public class EventoDAO {
 	
 	public static List<Evento> getEventos(){
 		
+		banco.getTransaction().begin();
 		List<Evento> eventos = (List<Evento>) banco.createQuery("from Evento").getResultList();
+		banco.getTransaction().commit();
+		
 		return eventos;
 	}
 	
@@ -47,4 +51,20 @@ public class EventoDAO {
 		
 		
 	}
+	
+	public static List<Evento> getEventosProfessor(Professor professor){
+		
+		String hql = "from evento WHERE us.professor=:professor";
+		
+		banco.getTransaction().begin();
+		List<Evento> eventos = (List<Evento>)
+				banco.createQuery(hql).setParameter("professor", professor).getResultList();
+		banco.getTransaction().commit();
+		
+		return eventos;
+		
+	}
+	
+	
+
 }

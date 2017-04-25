@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,9 +29,14 @@ public class Evento {
 	@Temporal(TemporalType.TIME)
 	private Date hora;
 	
+	@ManyToOne
+	@JoinColumn(name="id_professor", referencedColumnName="id")
+	private Professor professor;
+	
 	private String descricao;
 	private String organizador;
 	private String palestrante;
+	
 	private int quantidade;
 	
 	
@@ -37,18 +44,22 @@ public class Evento {
 		/*A taglib precisa de um construtor vazio*/
 	}
 	
-	public Evento(String nome, String local, Date data, Date hora, String descricao, String organizador,
-			String palestrante, int quantidade) {
+	
+	
+	public Evento(String nome, String local, Date data, Date hora, Professor professor, String descricao,
+			String organizador, String palestrante, int quantidade) {
 		super();
 		this.nome = nome;
 		this.local = local;
 		this.data = data;
 		this.hora = hora;
+		this.professor = professor;
 		this.descricao = descricao;
 		this.organizador = organizador;
 		this.palestrante = palestrante;
 		this.quantidade = quantidade;
 	}
+
 
 	public long getId() {
 		return id;
@@ -122,4 +133,17 @@ public class Evento {
 		this.quantidade = quantidade;
 	}
 
+
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	
+	
 }

@@ -38,6 +38,7 @@ public class CadastrarProfessor extends HttpServlet {
 
 		ProfessorDAO.criarProfessor(professor);
 
+	
 		response.sendRedirect("index.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
