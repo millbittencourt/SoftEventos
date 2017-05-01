@@ -10,14 +10,16 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Column(unique = true)
 	private String login;
-	
+
 	private String senha;
 
 	@Column(unique = true)
 	private String email;
+
+	private boolean verificacao;
 
 	public Usuario() {
 
@@ -29,11 +31,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Usuario(String login, String senha, String email) {
+	public Usuario(String login, String senha, String email, boolean verificacao) {
 		super();
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
+		this.verificacao = verificacao;
 	}
 
 	public long getId() {
@@ -66,6 +69,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isVerificacao() {
+		return verificacao;
+	}
+
+	public void setVerificacao(boolean verificacao) {
+		this.verificacao = verificacao;
 	}
 
 }

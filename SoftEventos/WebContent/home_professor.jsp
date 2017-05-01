@@ -8,11 +8,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
    <title> Home </title>
+   
    <jsp:useBean id="usuario" class="br.com.ucsal.model.Professor" scope="session"></jsp:useBean>
    <jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
 </head>
 <body>
-	
+
+	Professor <br> <br>
 	Bem vindo: <c:out value="${usuario.nome}"></c:out> 
 	<c:import url="nav.html"></c:import>
 	

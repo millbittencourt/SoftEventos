@@ -16,12 +16,12 @@ public class Professor extends Usuario {
 
 	}
 
-	public Professor(String login, String senha, String email, String nome, String cpf, String telefone) {
-		super(login, senha, email);
+	public Professor(String login, String senha, String email, String nome, String cpf, String telefone,
+			boolean verificacao) {
+		super(login, senha, email, verificacao);
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
-
 	}
 
 	public String getNome() {

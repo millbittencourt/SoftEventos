@@ -17,9 +17,10 @@ public class Aluno extends Usuario {
 		super();
 	}
 
-	public Aluno(String login, String senha, String nome, String email, String cpf, String telefone, String curso,
-			String turma) {
-		super(login, senha, email);
+	public Aluno(String login, String senha, String email, String nome, String cpf, String telefone, String curso,
+			String turma, boolean verificacao) {
+
+		super(login, senha, email, verificacao);
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
@@ -67,5 +68,4 @@ public class Aluno extends Usuario {
 	public void setTurma(String turma) {
 		this.turma = turma;
 	}
-
 }

@@ -14,17 +14,17 @@
 	<form action="CadastrarProfessor" method="post">
 
 		<p>
-			Login: <br> <input type="text" name="login" placeholder="Login">
+			Login: <br> <input type="text" name="login" placeholder="Login" required>
 		</p>
 
 		<p>
 			Senha: <br> <input type="password" name="senha"
-				placeholder="Senha">
+				placeholder="Senha" required>
 		</p>
 		
 		<p>
 			Email: <br> <input type="email" name="email"
-				placeholder="Email">
+				placeholder="Email" required>
 		</p>
 
 		<p>

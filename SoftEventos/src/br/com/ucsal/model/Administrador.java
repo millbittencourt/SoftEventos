@@ -15,7 +15,7 @@ public class Administrador extends Usuario {
 	}
 
 	public Administrador(String login, String senha, String email, int nivel) {
-		super(login, senha, email);
+		super(login, senha, email, true);
 		this.nivel = nivel;
 	}
 

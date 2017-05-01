@@ -12,7 +12,7 @@
 	scope="session"></jsp:useBean>
 </head>
 <body>
-	
+	Aluno <br> <br>
 	Bem vindo: <c:out value="${usuario.nome}"></c:out> 
 	<c:import url="nav.html"></c:import>
 	<ul>

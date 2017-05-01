@@ -7,22 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.ucsal.dao.ProfessorDAO;
-import br.com.ucsal.model.Professor;
+import br.com.ucsal.dao.UsuarioDAO;
+import br.com.ucsal.model.Usuario;
 
 /**
- * Servlet implementation class CadastrarProfessor
+ * Servlet implementation class ApagarUsuario
  */
-@WebServlet("/CadastrarProfessor")
-public class CadastrarProfessor extends HttpServlet {
+@WebServlet("/ConfirmarUsuario")
+public class ConfirmarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CadastrarProfessor() {
+	public ConfirmarUsuario() {
 		super();
-
 	}
 
 	/**
@@ -31,15 +30,21 @@ public class CadastrarProfessor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("3");
+		Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id")));
 
-		Professor professor = new Professor(request.getParameter("login"), request.getParameter("senha"),
-				request.getParameter("email"), request.getParameter("nome"), request.getParameter("cpf"),
-				request.getParameter("telefone"), false);
-
-		ProfessorDAO.criarProfessor(professor);
-
-	
-		response.sendRedirect("index.jsp");
+		if ("s".equals(request.getParameter("conf"))) {
+			System.out.println("3.1");
+			usuario.setVerificacao(true);
+			UsuarioDAO.modificarUsuario(usuario);
+			System.out.println("3.12");
+		} else {
+			System.out.println("3.2");
+			UsuarioDAO.removerUsusario(usuario);
+			System.out.println("3.22");
+		}
+		System.out.println("4");
+		response.sendRedirect("home-administrador.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -49,7 +54,6 @@ public class CadastrarProfessor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

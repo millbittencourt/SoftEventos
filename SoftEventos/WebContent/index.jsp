@@ -11,19 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 
 <title>SoftEventos</title>
-<jsp:useBean id="usuario" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
+<jsp:useBean id="usuario" class="br.com.ucsal.model.Usuario"
+	scope="session"></jsp:useBean>
 </head>
 <body>
 
 	<c:import url="nav.html"></c:import>
-	
+
 	<c:if test="${usuario != null}">
-		<c:if test="<%=usuario instanceof Aluno%>">
-		<a href="home_aluno.jsp"> Home </a>
-		</c:if>
-		<c:if test="<%=usuario instanceof Professor%>">
-		<a href="home_professor.jsp"> Home </a>
-		</c:if>
+		<a href="home.jsp"> Home </a>
 	</c:if>
 	<br>
 	<main>

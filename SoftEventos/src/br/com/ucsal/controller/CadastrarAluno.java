@@ -32,7 +32,7 @@ public class CadastrarAluno extends HttpServlet {
 			throws ServletException, IOException {
 		Aluno aluno = new Aluno(request.getParameter("login"), request.getParameter("senha"),
 				request.getParameter("email"), request.getParameter("nome"), request.getParameter("cpf"),
-				request.getParameter("telefone"), request.getParameter("curso"), request.getParameter("turma"));
+				request.getParameter("telefone"), request.getParameter("curso"), request.getParameter("turma"), false);
 
 		AlunoDAO.criarAluno(aluno);
 
