@@ -17,15 +17,9 @@ public class UsuarioDAO {
 		String hql = "SELECT us FROM Usuario As us WHERE us.login=:login AND us.senha=:senha";
 
 		Usuario aux = null;
-
-		try {
-
-			aux = (Usuario) banco.createQuery(hql).setParameter("login", usuario.getLogin())
-					.setParameter("senha", usuario.getSenha()).getSingleResult();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+																															
+		aux = (Usuario) banco.createQuery(hql).setParameter("login", usuario.getLogin())
+				.setParameter("senha", usuario.getSenha()).getSingleResult();
 
 		return aux;
 
@@ -70,27 +64,23 @@ public class UsuarioDAO {
 
 	public static List<Usuario> getUsuariosNaoVerificados() {
 		
-		System.out.println("1");
 		banco.getTransaction().begin();
 		List<Usuario> usuarios = (List<Usuario>) banco.createQuery("from Usuario where verificacao=:verificacao")
 				.setParameter("verificacao", false).getResultList();
 		banco.getTransaction().commit();
-		System.out.println("2");
 
 		return usuarios;
 	}
-	
-	public static void modificarUsuario(Usuario usuario){
-		
+
+	public static void modificarUsuario(Usuario usuario) {
 
 		banco.getTransaction().begin();
 		banco.merge(usuario);
 		banco.getTransaction().commit();
 
-		
 	}
 
-	public static void teste() {
+	private static void teste() {
 
 		Administrador adm = new Administrador("adm", "adm", "ad@ad", 1);
 

@@ -22,17 +22,16 @@
 
 
 	<c:forEach items="${usuarioDAO.getUsuariosNaoVerificados()}" var="usu">
-		<div class="usuario-nao-verificado" id="${usu.id}">
+		<div class="usuario" id="${usu.id}">
 			<h5>${usu.nome}</h3>
-			<ul>
-				<li>${usu.cpf}</li>
-			</ul>
+			${usu.cpf}
+			
 			Confirmar usuário:
 			<a href="ConfirmarUsuario?id=${usu.id}&conf=n" alt="Não"> Não </a>
 			<a href="ConfirmarUsuario?id=${usu.id}&conf=s" alt="Sim"> Sim </a>
 		</div>
 	</c:forEach>
-	asa
+	
 
 
 </body>

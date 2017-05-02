@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Inscritos")
-public class Inscrito {
+@Table(name="Inscricoes")
+public class Inscricao {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -26,9 +26,11 @@ public class Inscrito {
 	
 	
 	private boolean presenca;
+	
+	public Inscricao() {
+	}
 
-
-	public Inscrito(Aluno aluno, Evento evento, boolean presenca) {
+	public Inscricao(Aluno aluno, Evento evento, boolean presenca) {
 		super();
 		this.aluno = aluno;
 		this.evento = evento;

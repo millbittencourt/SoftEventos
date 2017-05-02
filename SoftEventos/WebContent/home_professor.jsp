@@ -23,23 +23,20 @@
 	<li> <a href="cadastrar_evento.jsp"> Cadastrar Eventos </a></li>
 	<li> <a href="deletar_conta.jsp" > Deletar Conta </a></li>
 	</ul>
-	
-	<!-- 
-	<c:forEach items="${eventoDAO.getEventosProfessor(usuario)}" var="evento">
-	<div class="evento" id="${evento.id}">
-		<h3>${evento.nome}</h3>
-		<ul>
-			<li> <fmt:formatDate pattern="dd-MM-yyyy" 
-            value="${evento.data}" /></li>
-			<li>${evento.palestrante}</li>
-			<li>${evento.local}</li>
-		</ul>
-		aba
-		<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">Ver Mais</a>
-	</div>
-	 -->
-	 
-</c:forEach>
-	
+
+
+	<c:forEach items="${eventoDAO.getEventosProfessor(usuario)}"
+		var="evento">
+		<div class="evento" id="${evento.id}">
+			<h3>${evento.nome}</h3>
+			<ul>
+				<li><fmt:formatDate pattern="dd-MM-yyyy" value="${evento.data}" /></li>
+				<li>${evento.palestrante}</li>
+				<li>${evento.local}</li>
+			</ul>
+			<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">Ver Mais</a>
+		</div>
+	</c:forEach>
+
 </body>
 </html>

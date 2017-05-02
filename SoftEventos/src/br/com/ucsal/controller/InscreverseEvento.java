@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.ucsal.dao.EventoDAO;
 import br.com.ucsal.dao.InscritoDAO;
 import br.com.ucsal.model.Aluno;
-import br.com.ucsal.model.Inscrito;
+import br.com.ucsal.model.Inscricao;
 
 /**
  * Servlet implementation class InscreverseEvento
@@ -33,9 +33,9 @@ public class InscreverseEvento extends HttpServlet {
 		
 		Aluno aluno = (Aluno) request.getSession().getAttribute("usuario");
 		
-		Inscrito inscrito = new Inscrito(aluno, EventoDAO.getEvento(Integer.parseInt(request.getParameter("id"))), false);
+		Inscricao inscricao = new Inscricao(aluno, EventoDAO.getEvento(Integer.parseInt(request.getParameter("id"))), false);
 		
-		InscritoDAO.criarInscrito(inscrito);
+		InscritoDAO.criarInscricao(inscricao);
 		
 		
 		

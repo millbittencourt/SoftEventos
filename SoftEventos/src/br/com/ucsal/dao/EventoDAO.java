@@ -54,7 +54,7 @@ public class EventoDAO {
 	
 	public static List<Evento> getEventosProfessor(Professor professor){
 		
-		String hql = "from evento WHERE us.professor=:professor";
+		String hql = "from Evento WHERE professor=:professor";
 		
 		banco.getTransaction().begin();
 		List<Evento> eventos = (List<Evento>)

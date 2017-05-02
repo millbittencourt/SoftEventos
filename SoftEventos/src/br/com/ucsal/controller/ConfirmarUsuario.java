@@ -30,21 +30,15 @@ public class ConfirmarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("3");
 		Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id")));
 
 		if ("s".equals(request.getParameter("conf"))) {
-			System.out.println("3.1");
 			usuario.setVerificacao(true);
 			UsuarioDAO.modificarUsuario(usuario);
-			System.out.println("3.12");
 		} else {
-			System.out.println("3.2");
 			UsuarioDAO.removerUsusario(usuario);
-			System.out.println("3.22");
 		}
-		System.out.println("4");
-		response.sendRedirect("home-administrador.jsp");
+		response.sendRedirect("home_administrador.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

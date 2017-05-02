@@ -8,8 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 
 <title>Home</title>
-<jsp:useBean id="usuario" class="br.com.ucsal.model.Aluno"
+	<jsp:useBean id="usuario" class="br.com.ucsal.model.Aluno"
 	scope="session"></jsp:useBean>
+	   <jsp:useBean id="inscricaoDAO" class="br.com.ucsal.dao.InscritoDAO"></jsp:useBean>
+	
 </head>
 <body>
 	Aluno <br> <br>
@@ -19,5 +21,8 @@
 	<li> <a href="modificar_aluno.jsp"> Modificar Conta</a> </li>
 	<li> <a href="deletar_conta.jsp" > Deletar Conta </a> </li>
 	</ul>
+	
+	
+	
 </body>
 </html>

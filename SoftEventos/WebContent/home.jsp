@@ -24,24 +24,28 @@
 		</c:when>
 
 		<c:otherwise>
-			<c:when test="${!ususario.verificacao}">
-				<c:choose>
-					<c:when test="<%=usuario instanceof Aluno%>">
-						<c:redirect url="home_aluno.jsp">
-						</c:redirect>
-					</c:when>
-					<c:when test="<%=usuario instanceof Professor%>">
-						<c:redirect url="home_professor.jsp">
-						</c:redirect>
-					</c:when>
-				</c:choose>
-			</c:when>
 
-			<c:otherwise>
-				<h1>Sua conta Ainda não foi verificada. Volte Mais tarde</h1>
-				<p>Loren ipsun dolor si amet</p>
-				<a href="indes.jsp"> Voltar </a>
-			</c:otherwise>
+			<c:choose>
+				
+				<c:when test="${usuario.verificacao}">
+					<c:choose>
+						<c:when test="<%=usuario instanceof Aluno%>">
+							<c:redirect url="home_aluno.jsp">
+							</c:redirect>
+						</c:when>
+						<c:when test="<%=usuario instanceof Professor%>">
+							<c:redirect url="home_professor.jsp">
+							</c:redirect>
+						</c:when>
+					</c:choose>
+				</c:when>
+
+				<c:otherwise>
+					<h1>Sua conta Ainda não foi verificada. Volte Mais tarde</h1>
+					<p>Loren ipsun dolor si amet</p>
+					<a href="index.jsp"> Voltar </a>
+				</c:otherwise>
+			</c:choose>
 
 		</c:otherwise>
 
