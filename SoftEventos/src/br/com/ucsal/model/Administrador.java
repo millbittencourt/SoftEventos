@@ -1,30 +1,32 @@
 package br.com.ucsal.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Administradores")
+@Table(name = "administradores")
 @PrimaryKeyJoinColumn(name = "id")
-public class Administrador extends Usuario {
-
-	int nivel;
-
+public class Administrador extends Conta {
+	
+	private int tipo;
+	
 	public Administrador() {
-		super();
-
+	}
+	
+	public Administrador(String login, String senha, int tipo) {
+		super(login, senha);
+		this.tipo = tipo;
 	}
 
-	public Administrador(String login, String senha, String email, int nivel) {
-		super(login, senha, email, true);
-		this.nivel = nivel;
+	public int getTipo() {
+		return tipo;
 	}
 
-	public int getNivel() {
-		return nivel;
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
-
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
-	}
+	
+	
 
 }

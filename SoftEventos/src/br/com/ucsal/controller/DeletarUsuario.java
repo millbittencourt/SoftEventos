@@ -1,8 +1,5 @@
 package br.com.ucsal.controller;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,26 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-
+import br.com.ucsal.dao.ContaDAO;
 import br.com.ucsal.dao.EventoDAO;
+import br.com.ucsal.dao.InscricaoDAO;
 import br.com.ucsal.dao.UsuarioDAO;
-import br.com.ucsal.model.Evento;
+import br.com.ucsal.model.Aluno;
 import br.com.ucsal.model.Professor;
+import br.com.ucsal.model.Usuario;
 
 /**
- * Servlet implementation class CadastarEvento
+ * Servlet implementation class DeletarConta
  */
-@WebServlet("/CadastrarEvento")
-public class CadastrarEvento extends HttpServlet {
+@WebServlet("/DeletarUsuario")
+public class DeletarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CadastrarEvento() {
+	public DeletarUsuario() {
 		super();
-
 	}
 
 	/**
@@ -39,31 +36,21 @@ public class CadastrarEvento extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		SimpleDateFormat fData = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
+		Usuario usuario = (Usuario) request.getSession().getAttribute("conta");
 
-		Date data = null;
-		Date hora = null;
-
-		try {
-
-			data = fData.parse(request.getParameter("data"));
-			hora = fHora.parse(request.getParameter("hora"));
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (usuario instanceof Aluno) {
+			InscricaoDAO.removerInscricaoAluno((Aluno) usuario);
+			
+		} else if (usuario instanceof Professor) {
+			EventoDAO.removerEventosProfessor((Professor) usuario);
+			
 		}
-
-		Evento evento = new Evento(request.getParameter("nome"), request.getParameter("local"), data, hora,
-				(Professor) request.getSession().getAttribute("conta"), request.getParameter("descricao"),
-				request.getParameter("organizador"), request.getParameter("palestrante"),
-				Integer.parseInt(request.getParameter("qtd")));
 		
-		EventoDAO.criarEvento(evento);
+		ContaDAO.removerConta(usuario);
+		request.getSession().removeAttribute("conta");
 
-		response.sendRedirect("eventos.jsp");
+		response.sendRedirect("index.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-
 	}
 
 	/**

@@ -1,51 +1,20 @@
 package br.com.ucsal.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Professores")
+@Table(name = "professores")
 @PrimaryKeyJoinColumn(name = "id")
 public class Professor extends Usuario {
-
-	private String nome;
-	private String cpf;
-	private String telefone;
-
+	
 	public Professor() {
-		super();
-
 	}
-
-	public Professor(String login, String senha, String email, String nome, String cpf, String telefone,
-			boolean verificacao) {
-		super(login, senha, email, verificacao);
-		this.nome = nome;
-		this.cpf = cpf;
-		this.telefone = telefone;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	
+	public Professor(String login, String senha, String nome, String telefone, String cpf, String email,
+			boolean verificado) {
+		super(login, senha, nome, telefone, cpf, email, verificado);
 	}
 
 }

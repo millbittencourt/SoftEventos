@@ -52,7 +52,7 @@ public class ModificarEvento extends HttpServlet {
 		}
 
 		Evento evento = new Evento(request.getParameter("nome"), request.getParameter("local"), data, hora,
-				(Professor) request.getSession().getAttribute("usuario"), request.getParameter("descricao"),
+				(Professor) request.getSession().getAttribute("conta"), request.getParameter("descricao"),
 				request.getParameter("organizador"), request.getParameter("palestrante"),
 				Integer.parseInt(request.getParameter("qtd")));
 

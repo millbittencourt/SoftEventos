@@ -13,39 +13,35 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="Eventos")
+@Table(name = "eventos")
 public class Evento {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String nome;
 	private String local;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date data;
-	
+
 	@Temporal(TemporalType.TIME)
 	private Date hora;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_professor", referencedColumnName="id")
+	@JoinColumn(name = "id_professor", referencedColumnName = "id")
 	private Professor professor;
-	
+
 	private String descricao;
 	private String organizador;
 	private String palestrante;
-	
+
 	private int quantidade;
-	
-	
+
 	public Evento() {
-		/*A taglib precisa de um construtor vazio*/
 	}
-	
-	
-	
+
 	public Evento(String nome, String local, Date data, Date hora, Professor professor, String descricao,
 			String organizador, String palestrante, int quantidade) {
 		super();
@@ -59,7 +55,6 @@ public class Evento {
 		this.palestrante = palestrante;
 		this.quantidade = quantidade;
 	}
-
 
 	public long getId() {
 		return id;
@@ -133,17 +128,12 @@ public class Evento {
 		this.quantidade = quantidade;
 	}
 
-
-
 	public Professor getProfessor() {
 		return professor;
 	}
 
-
-
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	
-	
+
 }

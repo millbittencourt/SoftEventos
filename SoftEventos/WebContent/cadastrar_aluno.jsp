@@ -1,20 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cadastar Aluno</title>
-</head>
-<body>
-	<c:import url="nav.html"></c:import>
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+ 	<meta charset="utf-8">
+ 	<title> Cadastrar Aluno </title>
+ </head>
+
+ <body>
+
+ 	<header>
+ 		<c:import url="nav.jsp"></c:import>
+ 	</header>
+
+ 	<main>
+
+ 	<c:out value="${erro}"></c:out>
 
 	<form action="CadastrarAluno" method="post">
 
 		<p>
-			Login: <br> <input type="text" name="login" placeholder="Login" required>
+			Login: <br> <input type="text" name="login" placeholder="Login"
+				required>
 		</p>
 
 		<p>
@@ -59,5 +68,10 @@
 
 	</form>
 
-</body>
-</html>
+ 	</main>
+
+ 	<footer> Softeventos </footer>
+
+ </body>
+
+ </html>

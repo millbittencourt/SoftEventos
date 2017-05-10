@@ -1,21 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title> Deletar Conta </title>
+	<meta charset="utf-8">
+	<title> Deletar Conta </title>
+	<jsp:useBean id="conta" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
 </head>
+
 <body>
 
-	<div>
-	<h1> Voc� tem certeza que deseja Deletar Sua conta	</h1>
-	
-	<a href="DeletarConta"> Sim </a> 
-	<br>
-	<a href="index.jsp"> N�o </a>
-	</div>
+<header>
+		<c:import url="nav.jsp"></c:import>
+	</header>
 
+	<main>
+	
+	
+	<form action="#" method="POST">
+		<p>
+			Digite sua senha para confirmação:<br> <input type="password"
+				name="senha" placeholder="Senha">
+		</p>
+		<button type="submit">Deletar conta</button>
+
+	</form>
+	
+	
+	<c:if test="${param.senha==conta.senha}">
+		<div>
+			<h3>Você tem certeza que deseja Deletar Sua conta</h3>
+
+			<a href="DeletarUsuario"> Sim </a> <br> 
+			<a href="index.jsp"> Não </a>
+		</div>
+	</c:if>
+	
+	
+	
+	</main>
+
+	<footer> Softeventos </footer>
 
 </body>
+
 </html>

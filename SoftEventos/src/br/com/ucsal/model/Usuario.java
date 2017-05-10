@@ -1,66 +1,60 @@
 package br.com.ucsal.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
+@Table(name = "usuarios")
+@PrimaryKeyJoinColumn(name = "id")
+public class Usuario extends Conta {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private String nome;
+	private String telefone;
 
 	@Column(unique = true)
-	private String login;
-
-	private String senha;
+	private String cpf;
 
 	@Column(unique = true)
 	private String email;
-
-	private boolean verificacao;
-
+	private boolean verificado;
+	
 	public Usuario() {
-
 	}
-
-	public Usuario(String login, String senha) {
-		super();
-		this.login = login;
-		this.senha = senha;
-	}
-
-	public Usuario(String login, String senha, String email, boolean verificacao) {
-		super();
+	
+	public Usuario(String login, String senha, String nome, String telefone, String cpf, String email,
+			boolean verificado) {
+		super(login, senha);
+		this.nome = nome;
+		this.telefone = telefone;
+		this.cpf = cpf;
 		this.email = email;
-		this.login = login;
-		this.senha = senha;
-		this.verificacao = verificacao;
+		this.setVerificado(verificado);
 	}
 
-	public long getId() {
-		return id;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getEmail() {
@@ -71,12 +65,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public boolean isVerificacao() {
-		return verificacao;
+	public boolean isVerificado() {
+		return verificado;
 	}
 
-	public void setVerificacao(boolean verificacao) {
-		this.verificacao = verificacao;
+	public void setVerificado(boolean verificado) {
+		this.verificado = verificado;
 	}
 
 }

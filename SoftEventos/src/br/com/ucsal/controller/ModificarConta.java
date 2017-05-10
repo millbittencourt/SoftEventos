@@ -7,20 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.ucsal.dao.UsuarioDAO;
+import br.com.ucsal.dao.AlunoDAO;
+import br.com.ucsal.dao.ContaDAO;
+import br.com.ucsal.model.Aluno;
 import br.com.ucsal.model.Usuario;
 
 /**
- * Servlet implementation class DeletarConta
+ * Servlet implementation class ModificarConta
  */
-@WebServlet("/DeletarConta")
-public class DeletarConta extends HttpServlet {
+@WebServlet("/ModificarConta")
+public class ModificarConta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeletarConta() {
+    public ModificarConta() {
         super();
     }
 
@@ -29,13 +31,17 @@ public class DeletarConta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		Usuario usuario = (Usuario) request.getSession().getAttribute("conta");
 		
-		UsuarioDAO.removerUsusario(usuario);
-		request.getSession().removeAttribute("usuario");
+		usuario.setLogin(request.getParameter("login"));
+		usuario.setSenha(request.getParameter("senha"));
+		usuario.setEmail(request.getParameter("email"));
+		usuario.setTelefone(request.getParameter("telefone"));
 		
-		response.sendRedirect("index.jsp");
+		ContaDAO.modificarConta(usuario);
+		response.sendRedirect("home_aluno.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**

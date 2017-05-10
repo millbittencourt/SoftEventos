@@ -9,73 +9,63 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Inscricoes")
+@Table(name = "inscricoes")
 public class Inscricao {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_aluno", referencedColumnName="id")
+	@JoinColumn(name = "id_aluno", referencedColumnName = "id")
 	private Aluno aluno;
 
 	@ManyToOne
-	@JoinColumn(name="id_evento", referencedColumnName="id")
+	@JoinColumn(name = "id_evento", referencedColumnName = "id")
 	private Evento evento;
-	
-	
-	private boolean presenca;
-	
+
+	private boolean presente;
+
 	public Inscricao() {
 	}
 
-	public Inscricao(Aluno aluno, Evento evento, boolean presenca) {
+	public Inscricao(Aluno aluno, Evento evento, boolean presente) {
 		super();
 		this.aluno = aluno;
 		this.evento = evento;
-		this.presenca = presenca;
+		this.presente = presente;
 	}
-
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public Aluno getAluno() {
 		return aluno;
 	}
 
-
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
-
 
 	public Evento getEvento() {
 		return evento;
 	}
 
-
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
 
-
-	public boolean isPresenca() {
-		return presenca;
+	public boolean isPresente() {
+		return presente;
 	}
 
-
-	public void setPresenca(boolean presenca) {
-		this.presenca = presenca;
+	public void setPresente(boolean presente) {
+		this.presente = presente;
 	}
-	
-	
+
 }

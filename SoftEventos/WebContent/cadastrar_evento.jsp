@@ -1,61 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cadastar Evento</title>
+	<meta charset="utf-8">
+	<title> Cadastrar Evento </title>
 </head>
+
 <body>
-<c:import url="nav.html"></c:import>
 
-<form action="CadastrarEvento" method="post">
+<header>
+		<c:import url="nav.jsp"></c:import>
+	</header>
 
-<p> 
-	Nome: <br>
- <input type="text" name="nome" placeholder="Nome" required>
-</p>
+	<main>
+	
+	<c:out value="${erro}"></c:out>
+	
+	<form action="CadastrarEvento" method="post">
 
-<p> 
-	Local: <br>
- <input type="text" name="local" placeholder="Local" required>
-</p>
+		<p>
+			Nome: <br> <input type="text" name="nome" placeholder="Nome"
+				required>
+		</p>
 
-<p> 
-	Date: <br>
-	<input type="date" name="data" placeholder="Horário" required>
-</p>
+		<p>
+			Local: <br> <input type="text" name="local" placeholder="Local"
+				required>
+		</p>
+
+		<p>
+			Date: <br> <input type="date" name="data" placeholder="HorÃ¡rio"
+				required>
+		</p>
 
 
-<p> 
-	Horário: <br>
- <input type="time" name="hora" placeholder="Horário" required>
-</p>
+		<p>
+			HorÃ¡rio: <br> <input type="time" name="hora"
+				placeholder="HorÃ¡rio" required>
+		</p>
 
-<p> 
-	Descrição: <br>
- <textarea rows="5" cols="15" name="descricao" placeholder="Decriçã o" required></textarea>
-</p>
+		<p>
+			DescriÃ§Ã£o: <br>
+			<textarea rows="5" cols="15" name="descricao" placeholder="DecriÃ§Ã£ o"
+				required></textarea>
+		</p>
 
-<p> 
-	Organizador: <br>
- <input type="text" name="organizador" placeholder="Organizador" required>
-</p>
+		<p>
+			Organizador: <br> <input type="text" name="organizador"
+				placeholder="Organizador" required>
+		</p>
 
-<p> 
-	Palestrante: <br>
- <input type="text" name="palestrante" placeholder="Palestante" required>
-</p>
+		<p>
+			Palestrante: <br> <input type="text" name="palestrante"
+				placeholder="Palestante" required>
+		</p>
 
-<p> 
-	Quantidade Máxima: <br>
- <input type="number" name="qtd">
-</p>
+		<p>
+			Quantidade MÃ¡xima: <br> <input type="number" name="qtd">
+		</p>
 
-<button type="submit"> Cadastrar </button>
+		<button type="submit">Cadastrar</button>
 
-</form>
+	</form>
+	
+	</main>
+
+	<footer> Softeventos </footer>
 
 </body>
+
 </html>

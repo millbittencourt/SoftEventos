@@ -1,39 +1,43 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="br.com.ucsal.model.Administrador"%>
 <%@page import="br.com.ucsal.model.Professor"%>
 <%@page import="br.com.ucsal.model.Aluno"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 
-<title>SoftEventos</title>
-<jsp:useBean id="usuario" class="br.com.ucsal.model.Usuario"
-	scope="session"></jsp:useBean>
+<head>
+	<meta charset="utf-8">
+	<title> Home </title>
+	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
 </head>
+
 <body>
+
+<header>
+		<c:import url="nav.jsp"></c:import>
+	</header>
+
+	<main>
+	
 	<c:choose>
 
-		<c:when test="<%=usuario instanceof Administrador%>">
+		<c:when test="<%=conta instanceof Administrador%>">
 			<c:redirect url="home_administrador.jsp">
 			</c:redirect>
 		</c:when>
 
 		<c:otherwise>
-
 			<c:choose>
 				
-				<c:when test="${usuario.verificacao}">
+				<c:when test="${conta.verificado}">
 					<c:choose>
-						<c:when test="<%=usuario instanceof Aluno%>">
+						<c:when test="<%=conta instanceof Aluno%>">
 							<c:redirect url="home_aluno.jsp">
 							</c:redirect>
 						</c:when>
-						<c:when test="<%=usuario instanceof Professor%>">
+						<c:when test="<%=conta instanceof Professor%>">
 							<c:redirect url="home_professor.jsp">
 							</c:redirect>
 						</c:when>
@@ -41,15 +45,23 @@
 				</c:when>
 
 				<c:otherwise>
-					<h1>Sua conta Ainda n„o foi verificada. Volte Mais tarde</h1>
-					<p>Loren ipsun dolor si amet</p>
+				<div>
+					<h1>Sua conta Ainda n√£o foi verificada. Volte Mais tarde</h1>
+					<p>Softeventos</p>
 					<a href="index.jsp"> Voltar </a>
+				</div>
 				</c:otherwise>
 			</c:choose>
 
 		</c:otherwise>
 
 	</c:choose>
+	
+
+	</main>
+
+	<footer> Softeventos </footer>
 
 </body>
+
 </html>

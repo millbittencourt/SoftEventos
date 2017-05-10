@@ -30,12 +30,15 @@ public class ConfirmarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		Usuario usuario = UsuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id")));
 
 		if ("s".equals(request.getParameter("conf"))) {
-			usuario.setVerificacao(true);
+			
+			usuario.setVerificado(true);;
 			UsuarioDAO.modificarUsuario(usuario);
 		} else {
+			
 			UsuarioDAO.removerUsusario(usuario);
 		}
 		response.sendRedirect("home_administrador.jsp");

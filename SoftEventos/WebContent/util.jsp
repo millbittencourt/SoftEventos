@@ -7,7 +7,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title> Login </title>
+	<title> Util </title>
 </head>
 
 <body>
@@ -17,24 +17,6 @@
 	</header>
 
 	<main>
-	
-	<c:out value="${erro}"></c:out>
-
-	<form method="POST" action="AutenticarConta">
-
-		<p>
-			Login: <br> 
-			<input type="text" name="login" placeholder="Login">
-		</p>
-
-		<p>
-			Senha: <br> 
-			<input type="password" name="senha"	placeholder="Senha">
-		</p>
-
-		<button type="submit"> Entrar </button>
-
-	</form>
 
 	</main>
 
