@@ -11,6 +11,7 @@
 	<meta charset="utf-8">
 	<title> Home </title>
 	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>

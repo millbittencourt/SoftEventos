@@ -3,13 +3,16 @@
 
 
 <nav>
+<div>
+<a href="index.jsp"> <img alt="logo" src="img/logo.png"> </a>
 	<ul>
-		<li><a href="index.jsp"> SoftEventos</a></li>
 		<li><a href="eventos.jsp"> Eventos </a></li>
 		<li><a href="cadastrar_aluno.jsp"> Cadastrar Alunos</a></li>
 		<li><a href="cadastrar_professor.jsp"> Cadastrar Professor</a></li>
 	</ul>
+</div>
 
+<div>
 <c:choose>
 	<c:when test="${conta.login == null}">
 		<button>
@@ -21,9 +24,9 @@
 			<a href="home.jsp">Home</a>
 		</button>
 		<button>
-			<a href="Sair"> Sair</a>
+			<a href="SairConta"> Sair</a>
 		</button>
 	</c:when>
 </c:choose>
-
+</div>
 </nav>

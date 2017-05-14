@@ -11,6 +11,8 @@
 	<title> Modificar Evento </title>
 	<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
 	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
 </head>
 
 <body>

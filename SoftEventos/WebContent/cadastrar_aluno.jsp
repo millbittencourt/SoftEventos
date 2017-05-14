@@ -7,6 +7,7 @@
  <head>
  	<meta charset="utf-8">
  	<title> Cadastrar Aluno </title>
+ 	<link rel="stylesheet" type="text/css" href="css/style.css">
  </head>
 
  <body>

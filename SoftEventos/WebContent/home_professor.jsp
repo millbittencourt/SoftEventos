@@ -13,6 +13,7 @@
 	<jsp:useBean id="conta" class="br.com.ucsal.model.Professor" scope="session"></jsp:useBean>
 	<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
 	<c:set var="professor" value="${conta}" scope="page"> </c:set>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>

@@ -8,6 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<title> SoftEventos </title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -18,11 +19,12 @@
 
 	<main>
 
-	<section id="principal-imagem"></section>
+	<section id="principal-imagem"
+	 style="background-image: url('img/palestra.jpg');"></section>
 
-<section>
-		<div>
-			Quem somos nós?
+<section id="sobre">
+		<div >
+			<h2> Sobre </h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
 				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
 				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi

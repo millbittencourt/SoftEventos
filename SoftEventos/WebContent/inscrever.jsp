@@ -11,6 +11,7 @@
 	<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
 	<title> Inscrever-se em  ${evento.nome} </title>
 	<jsp:useBean id="Conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>

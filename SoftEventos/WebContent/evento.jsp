@@ -9,12 +9,14 @@
 
 <head>
 <meta charset="utf-8">
-<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
-<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
-<title>${evento.nome}</title>
-<jsp:useBean id="inscricaoDAO" class="br.com.ucsal.dao.InscricaoDAO"></jsp:useBean>
+	<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
+	<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
+	<title>${evento.nome}</title>
+	<jsp:useBean id="inscricaoDAO" class="br.com.ucsal.dao.InscricaoDAO"></jsp:useBean>
+	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+
 <body>
 
 	<header>

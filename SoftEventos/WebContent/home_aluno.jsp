@@ -12,6 +12,7 @@
 	<jsp:useBean id="conta" class="br.com.ucsal.model.Aluno" scope="session"></jsp:useBean>
 	<jsp:useBean id="inscricaoDAO" class="br.com.ucsal.dao.InscricaoDAO"></jsp:useBean>
 	<c:set var="aluno" value="${conta}" scope="page"> </c:set>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>

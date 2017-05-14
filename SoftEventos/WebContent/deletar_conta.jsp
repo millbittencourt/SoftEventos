@@ -9,6 +9,7 @@
 	<meta charset="utf-8">
 	<title> Deletar Conta </title>
 	<jsp:useBean id="conta" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>

@@ -10,6 +10,7 @@
 	<meta charset="utf-8">
 	<title> Eventos </title>
 	<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 		<div class="evento" id="${evento.id}">
 			<h3>${evento.nome}</h3>
 			<ul>
-				<li><fmt:formatDate pattern="dd-MM-yyyy" value="${evento.data}" /></li>
+				<li><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
 				<li>${evento.palestrante}</li>
 				<li>${evento.local}</li>
 			</ul>

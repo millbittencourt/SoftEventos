@@ -9,6 +9,7 @@
  	<meta charset="utf-8">
  	<title>SoftEventos</title>
  	<jsp:useBean id="usuarioDAO" class="br.com.ucsal.dao.UsuarioDAO"></jsp:useBean>
+ 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
  <body>
