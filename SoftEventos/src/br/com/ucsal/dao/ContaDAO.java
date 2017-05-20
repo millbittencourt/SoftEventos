@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import br.com.ucsal.model.Conta;
-import br.com.ucsal.model.Usuario;
 
 public class ContaDAO {
 
@@ -16,9 +15,12 @@ public class ContaDAO {
 		String hql = "SELECT con FROM Conta As con WHERE con.login=:login AND con.senha=:senha";
 		
 		banco.getTransaction().begin();
-		conta = (Conta) banco.createQuery(hql).setParameter("login", login).setParameter("senha", senha)
-				.getSingleResult();
-		banco.getTransaction().commit();
+		try {
+			conta = (Conta) banco.createQuery(hql).setParameter("login", login).setParameter("senha", senha)
+					.getSingleResult();			
+		} finally {
+			banco.getTransaction().commit();
+		}
 
 		return conta;
 	}

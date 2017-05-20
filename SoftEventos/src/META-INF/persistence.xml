@@ -17,6 +17,7 @@
 		<class>br.com.ucsal.model.Professor</class>
 		<class>br.com.ucsal.model.Aluno</class>
 		<class>br.com.ucsal.model.Conta</class>
+		<class>br.com.ucsal.model.Curso</class>
 		
 		<properties>
 

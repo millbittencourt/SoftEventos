@@ -1,14 +1,11 @@
 package br.com.ucsal.dao;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import br.com.ucsal.model.Evento;
 import br.com.ucsal.model.Professor;
-import br.com.ucsal.model.Usuario;
 
 public class EventoDAO {
 

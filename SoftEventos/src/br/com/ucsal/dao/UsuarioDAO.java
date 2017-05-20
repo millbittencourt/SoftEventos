@@ -36,6 +36,7 @@ public class UsuarioDAO {
 		banco.getTransaction().commit();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Usuario> getUsuariosNaoVerificados() {
 		List<Usuario> usuarios = null;
 		banco.getTransaction().begin();

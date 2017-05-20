@@ -6,9 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import br.com.ucsal.model.Aluno;
-import br.com.ucsal.model.Evento;
 import br.com.ucsal.model.Inscricao;
-import br.com.ucsal.model.Usuario;
 
 public class InscricaoDAO {
 

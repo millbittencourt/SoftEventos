@@ -13,16 +13,16 @@
 
 <body>
 
-<header>
+	<header>
 		<c:import url="nav.jsp"></c:import>
 	</header>
 
 	<main>
-
+	<article>
 	<section id="principal-imagem"
 	 style="background-image: url('img/palestra.jpg');"></section>
 
-<section id="sobre">
+	<section id="sobre">
 		<div >
 			<h2> Sobre </h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
@@ -35,10 +35,16 @@
 
 		</div>
 	</section>
-
+	</article>
 	</main>
+	
+	<script type="text/javascript">
+	
+	
+	
+	</script>
 
-	<footer> Softeventos </footer>
+	<footer> <c:import url="footer.jsp"></c:import> </footer>
 
 </body>
 

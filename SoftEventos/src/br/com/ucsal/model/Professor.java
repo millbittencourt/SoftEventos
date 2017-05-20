@@ -16,5 +16,7 @@ public class Professor extends Usuario {
 			boolean verificado) {
 		super(login, senha, nome, telefone, cpf, email, verificado);
 	}
+	
+	
 
 }

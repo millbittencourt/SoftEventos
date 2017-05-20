@@ -3,9 +3,7 @@ package br.com.ucsal.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import br.com.ucsal.model.Aluno;
-import br.com.ucsal.model.Professor;
-import br.com.ucsal.model.Usuario;;
+import br.com.ucsal.model.Professor;;
 
 public class ProfessorDAO {
 

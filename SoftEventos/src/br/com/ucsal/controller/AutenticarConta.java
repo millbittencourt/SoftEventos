@@ -26,18 +26,18 @@ public class AutenticarConta extends HttpServlet {
 		
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		
+		String url = "index.jsp";  
 		try {
 
 			Conta conta = ContaDAO.autenticarConta(login, senha);
 			
 			request.getSession().setAttribute("conta", conta);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect(url);
 
 		} catch (NoResultException e) {
 
 			request.setAttribute("erro", "Usuário ou Senha inválidos");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher(url).forward(request, response);
 
 		} 
 

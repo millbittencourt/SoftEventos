@@ -1,6 +1,7 @@
 package br.com.ucsal.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.ucsal.dao.ContaDAO;
 import br.com.ucsal.dao.EventoDAO;
 import br.com.ucsal.dao.InscricaoDAO;
-import br.com.ucsal.dao.UsuarioDAO;
 import br.com.ucsal.model.Aluno;
 import br.com.ucsal.model.Professor;
 import br.com.ucsal.model.Usuario;

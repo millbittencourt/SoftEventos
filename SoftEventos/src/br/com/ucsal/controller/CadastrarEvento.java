@@ -1,19 +1,16 @@
 package br.com.ucsal.controller;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
-
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-
 import br.com.ucsal.dao.EventoDAO;
-import br.com.ucsal.dao.UsuarioDAO;
 import br.com.ucsal.model.Evento;
 import br.com.ucsal.model.Professor;
 
