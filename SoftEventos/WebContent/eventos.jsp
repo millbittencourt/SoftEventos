@@ -15,27 +15,39 @@
 
 <body>
 
-<header>
+	<header>
 		<c:import url="nav.jsp"></c:import>
 	</header>
 
 	<main>
 	
+	<h3> Eventos </h3>
+
+	
 	<c:forEach items="${eventoDAO.getEventos()}" var="evento">
+	
 		<div class="evento" id="${evento.id}">
-			<h3>${evento.nome}</h3>
+			<img alt="${evento.nome}" src="img/${evento.id}">
+			<div>
+			<h4>${evento.nome}</h4>
 			<ul>
-				<li><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
-				<li>${evento.palestrante}</li>
-				<li>${evento.local}</li>
+				<li>Dia: <fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
+				<li>Palestrante: ${evento.palestrante}</li>
+				<li>Local: ${evento.local}</li>
 			</ul>
-			<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">Ver Mais</a>
+			</div>
+			<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
+			<button>Ver Mais</button>
+			</a>
 		</div>
+	
 	</c:forEach>
 
 	</main>
 
-	<footer> Softeventos </footer>
+	<footer>
+		<c:import url="footer.jsp"></c:import>
+	</footer>
 
 </body>
 

@@ -9,6 +9,11 @@
  	<meta charset="utf-8">
  	<title> Cadastrar Professor </title>
  	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/jquery.mask.js"></script>
+	<script src="js/masks.js"></script>
+
  </head>
 
  <body>
@@ -19,38 +24,39 @@
 
  	<main>
 
- 		<c:out value="${erro}"></c:out>
- 		
-
+		<h3> Professor </h3>
+		
  		<form action="CadastrarProfessor" method="post">
+ 		
+ 			<span> ${erro} </span>	
 
  			<p>
- 				Login: <br> <input type="text" name="login" placeholder="Login"
+ 				Login:<span>*</span> <br> <input type="text" name="login" placeholder="Login"
  				required>
  			</p>
 
  			<p>
- 				Senha: <br> <input type="password" name="senha"
+ 				Senha: <span>*</span> <br> <input type="password" name="senha"
  				placeholder="Senha" required>
  			</p>
 
  			<p>
- 				Email: <br> <input type="email" name="email" placeholder="Email"
+ 				Email: <span>*</span> <br> <input type="email" name="email" placeholder="Email"
  				required>
  			</p>
 
  			<p>
- 				Nome: <br> <input type="text" name="nome" placeholder="Nome"
+ 				Nome: <span>*</span> <br> <input type="text" name="nome" placeholder="Nome"
  				required>
  			</p>
 
  			<p>
- 				CPF: <br> <input type="text" name="cpf" placeholder="CPF"
+ 				CPF: <span>*</span> <br> <input id="cpf" type="text" name="cpf" placeholder="CPF"
  				required>
  			</p>
 
  			<p>
- 				Telefone: <br> <input type="text" name="telefone"
+ 				Telefone: <span>*</span> <br> <input id="telefone" type="text" name="telefone"
  				placeholder="Telefone" required>
  			</p>
 
@@ -59,7 +65,10 @@
 
  	</main>
 
- 	<footer> Softeventos </footer>
+
+ 	<footer> 
+ 		<c:import url="footer.jsp"></c:import>
+ 	</footer>
 
  </body>
 

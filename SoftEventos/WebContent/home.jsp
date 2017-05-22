@@ -46,23 +46,29 @@
 				</c:when>
 
 				<c:otherwise>
+				
+				<section>
+				
 				<div>
-					<h1>Sua conta Ainda não foi verificada. Volte Mais tarde</h1>
+					<h2>Sua conta Ainda não foi verificada. Volte Mais tarde</h2>
 					<p>Softeventos</p>
-					<a href="index.jsp"> Voltar </a>
+					<a href="index.jsp"> <button> Voltar </button> </a>
 				</div>
+				
+				</section>
+				
 				</c:otherwise>
 			</c:choose>
 
 		</c:otherwise>
 
 	</c:choose>
-	
-
 	</main>
 
-	<footer> Softeventos </footer>
-
+	<footer>
+		<c:import url="footer.jsp"></c:import>
+	</footer>
+	
 </body>
 
 </html>

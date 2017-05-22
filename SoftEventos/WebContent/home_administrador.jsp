@@ -35,7 +35,9 @@
 
  	</main>
 
- 	<footer> Softeventos </footer>
+ 	<footer>
+		<c:import url="footer.jsp"></c:import>
+	</footer> 
 
  </body>
 

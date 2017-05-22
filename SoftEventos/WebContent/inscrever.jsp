@@ -22,14 +22,7 @@
 
 	<main>
 		
-	<div>
-	<h1> Você tem certeza que deseja se inverser no Evento: <c:out value="${evento.nome}"></c:out>
-	</h1>
 	
-	<a href="InscreverseEvento?id=${evento.id}"> Sim </a> 
-	<br>
-	<a href="eventos.jsp"> Não </a>
-	</div>
 	
 
 	</main>
