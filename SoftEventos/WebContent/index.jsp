@@ -20,21 +20,34 @@
 	<main>
 
 	<section id="cover">
-		<div id="principal-imagem" style="background-image: url('img/palestra.jpg');"></div>
-		<div id="texto-imagem">
-			<h3>Evento Lorem</h3>
-			<p>Lorem ipsum dolor sit amet</p>
-			<a>
-				<button class="setas"><</button>
-				<button>Ver mais</button>
-				<button class="setas">></button>
-			</a>
+
+		<div id="cover-imagem" style="background-image: url('img/palestra.jpg');">
+
+			<div id="cover-all">
+
+				<div id="cover-texto">
+					<h5>Evento Lorem</h5>
+					<p>Lorem ipsum dolor sit amet</p>
+					
+					<button id="btn-ver">Ver mais</button>
+				</div>
+
+				<div id="cover-buttons">
+					<button id="btn-ant">
+						<i class="fa fa-angle-left"></i>
+					</button>
+					<button id="btn-prox">
+						<i class="fa fa-angle-right"></i>
+					</button>
+				</div>
+			</div>
 		</div>
+
 	</section>
 
 	<section id="sobre">
 		<div>
-			<h2>Quem somos nós</h2>
+			<h2>Quem somos nós?</h2>
 			<p>Praesent in mauris eu tortor porttitor accumsan. Mauris suscipit, ligula sit amet pharetra semper, nibh ante
 				cursus purus, vel sagittis velit mauris vel metus. Aenean fermentum risus id tortor. Integer imperdiet lectus quis
 				justo. Integer tempor. Vivamus ac urna vel leo pretium faucibus. Mauris elementum mauris vitae tortor. In dapibus
@@ -44,6 +57,28 @@
 
 		</div>
 	</section>
+	
+	
+	<section id="contato">
+		
+		<h3> Envie-nos uma mensagem</h3>
+		
+		<form action="EnviarEmail">
+			<p>
+			Nome:
+			<input type="text" name="nome" placeholder="Seu Nome" required>
+			</p><p>
+			Titulo:
+			<input type="text" name="titulo" placeholder="Titulo" required>
+			</p>
+			<br>
+			Mensagem:
+			<textarea rows="10" cols="" placeholder="Sua Mensagem" required></textarea>
+			
+			<button type="submit"> Enviar </button>
+		</form>
+	</section>
+	
 	</main>
 
 	<footer>
@@ -53,7 +88,7 @@
 
 	<script>
 		$(document).ready(function() {
-			$("#cover").hover(function() {
+			$("#covxer").hover(function() {
 				$("#texto-imagem").slideToggle("slow");
 			});
 		});

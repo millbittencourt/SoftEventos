@@ -1,4 +1,4 @@
-<form method="POST" action="AutenticarConta" class="login">
+<form method="POST" action="AutenticarConta" id="login-form">
 
 		<span id="erro"> ${erro} </span>
 

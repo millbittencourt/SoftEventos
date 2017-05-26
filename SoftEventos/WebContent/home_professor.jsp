@@ -15,6 +15,10 @@
 <c:set var="professor" value="${conta}" scope="page">
 </c:set>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +40,10 @@
 			<li><a href="deletar_conta.jsp"> Deletar Conta </a></li>
 		</ul>
 	</section>
-
+	<section>
+	<div id="qrcode" ></div>
+					
+	</section>
 	<section>
 
 		<c:catch var="SemEvento">
@@ -68,6 +75,10 @@
 						<button> Ver Mais </button>
 					</a>
 					
+					
+					<button class="qrclass" id="hb" value="${evento.qrcode}"> QRCode </button>
+					
+					
 				</div>
 			</c:forEach>
 
@@ -84,6 +95,24 @@
 	<footer>
 		<c:import url="footer.jsp"></c:import>
 	</footer>
+	
+	<script>
+	
+	$(document).ready(function() {
+		$(".qrclass").click(function() {
+			var $hash = $(this).attr("value");
+			$("#qrcode").empty();
+			jQuery('#qrcode').qrcode({
+				render	: "table",
+				text	: "Softeventos?id=" + $hash
+			});	
+		});
+	});
+	
+	
+	
+	</script>
+	
 </body>
 
 </html>

@@ -65,15 +65,12 @@ public class Evento {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((hora == null) ? 0 : hora.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (id+1 ^ (id+1 >>> 32));
 		result = prime * result + ((local == null) ? 0 : local.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((organizador == null) ? 0 : organizador.hashCode());
-		result = prime * result + ((palestrante == null) ? 0 : palestrante.hashCode());
 		result = prime * result + (int) (qrcode ^ (qrcode >>> 32));
-		result = prime * result + quantidade;
 		return result;
 	}
 
@@ -210,5 +207,15 @@ public class Evento {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	
+
+	public long getQrcode() {
+		return qrcode;
+	}
+
+	public void setQrcode(long qrcode) {
+		this.qrcode = qrcode;
+	}
+
 
 }

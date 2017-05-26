@@ -27,7 +27,7 @@
 	<c:forEach items="${eventoDAO.getEventos()}" var="evento">
 	
 		<div class="evento" id="${evento.id}">
-			<img alt="${evento.nome}" src="img/${evento.id}">
+			<img alt="${evento.nome}" src="img/palestra.jpg" width="100%">
 			<div>
 			<h4>${evento.nome}</h4>
 			<ul>
