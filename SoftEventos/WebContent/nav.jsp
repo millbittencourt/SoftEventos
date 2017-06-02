@@ -1,6 +1,5 @@
 <jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <nav>
 
@@ -14,63 +13,68 @@
 	</div>
 
 	<div id="all-buttons">
-	
-	<div id="contexto-button">
-		<ul>
-			<li><a href="eventos.jsp">
-					<button>Eventos</button>
-			</a></li>
-			<li><a href="#sobre">
-					<button>Sobre</button>
-			</a></li>
-			<li><a href="#contato">
-					<button>Contato</button>
-			</a></li>
-		</ul>
+
+		<div id="contexto-button">
+			<ul>
+				<li><a href="eventos.jsp">
+						<button>Eventos</button>
+				</a></li>
+				<li><a href="#sobre">
+						<button>Sobre</button>
+				</a></li>
+				<li><a href="#contato">
+						<button>Contato</button>
+				</a></li>
+			</ul>
+
+		</div>
+
+		<div id="conta-button">
+			<c:choose>
+
+				<c:when test="${conta.login == null}">
+
+					<button onclick="over('log')">Login</button>
+
+					<div id="btn-cadastro">
+
+						<button>Cadastre-se</button>
+
+						<ul class="cadastros">
+							<li><a href="cadastrar_aluno.jsp"><button>Aluno</button></a></li>
+							<li><a href="cadastrar_professor.jsp"><button>Professor</button></a></li>
+						</ul>
+
+					</div>
+				</c:when>
+
+				<c:when test="${conta.login != null}">
+
+					<a href="home.jsp">
+						<button>Home</button>
+					</a>
+
+					<a href="SairConta">
+						<button>Sair</button>
+					</a>
+
+				</c:when>
+
+			</c:choose>
+		</div>
 
 	</div>
 
-	<div id="conta-button">
-		<c:choose>
-
-			<c:when test="${conta.login == null}">
-
-				<button onclick="exbover()">Login</button>
-
-				<div id="btn-cadastro">
-
-					<button>Cadastre-se</button>
-
-					<ul class="cadastros">
-						<li><a href="cadastrar_aluno.jsp"><button>Aluno</button></a></li>
-						<li><a href="cadastrar_professor.jsp"><button>Professor</button></a></li>
-					</ul>
-
-				</div>
-			</c:when>
-
-			<c:when test="${conta.login != null}">
-
-				<a href="home.jsp">
-					<button>Home</button>
-				</a>
-
-				<a href="SairConta">
-					<button>Sair</button>
-				</a>
-
-			</c:when>
-
-		</c:choose>
-	</div>
-	
-	</div>
-	
 </nav>
 
-<section id="overlay">
-	<div onclick="fechover()"></div>
-	<c:import url="login.jsp"></c:import>
+
+
+
+<section class="overlay" id="log">
+	<div onclick="over('log')" class="over-back"></div>
+	<div class="over-conteudo" >
+		<c:import url="login.jsp"></c:import>
+	</div>
 </section>
 
 <script>
@@ -78,15 +82,15 @@
 		$("#btn-cadastro").hover(function() {
 			$(".cadastros").slideToggle("fast");
 		});
-		
+
 		$("#btn-cadastro").click(function() {
 			$(".cadastros").slideToggle("fast");
 		});
-		
-		
-		$("#btn-menu").click(function(){
+
+		$("#btn-menu").click(function() {
 			$("#all-buttons").slideToggle("slow");
 		});
+		
 	});
 </script>
 
@@ -97,13 +101,9 @@
 			exbover();
 		}
 	})();
-
-	function exbover() {
-		document.getElementById("overlay").style.display = 'block';
-	}
-
-	function fechover() {
-		document.getElementById("overlay").style.display = 'none';
-
+	
+	function over(x){
+		
+		$("#"+x).fadeToggle("fast");
 	}
 </script>

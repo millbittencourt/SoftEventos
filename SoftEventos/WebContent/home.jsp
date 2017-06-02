@@ -1,5 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="br.com.ucsal.model.Administrador"%>
 <%@page import="br.com.ucsal.model.Professor"%>
@@ -8,21 +8,20 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title> Home </title>
-	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta charset="utf-8">
+<title>Home</title>
+<c:import url="links.html"></c:import>
+
+<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
 </head>
 
 <body>
 
-<header>
+	<header>
 		<c:import url="nav.jsp"></c:import>
 	</header>
 
-	<main>
-	
-	<c:choose>
+	<main> <c:choose>
 
 		<c:when test="<%=conta instanceof Administrador%>">
 			<c:redirect url="home_administrador.jsp">
@@ -31,7 +30,7 @@
 
 		<c:otherwise>
 			<c:choose>
-				
+
 				<c:when test="${conta.verificado}">
 					<c:choose>
 						<c:when test="<%=conta instanceof Aluno%>">
@@ -46,29 +45,31 @@
 				</c:when>
 
 				<c:otherwise>
-				
-				<section>
-				
-				<div>
-					<h2>Sua conta Ainda não foi verificada. Volte Mais tarde</h2>
-					<p>Softeventos</p>
-					<a href="index.jsp"> <button> Voltar </button> </a>
-				</div>
-				
-				</section>
-				
+
+					<section>
+
+						<div>
+							<h2>Sua conta Ainda não foi verificada. Volte Mais tarde</h2>
+							<h5>Softeventos</h5>
+							
+							<a href="index.jsp">
+								<button>Voltar</button>
+							</a>
+						</div>
+
+					</section>
+
 				</c:otherwise>
 			</c:choose>
 
 		</c:otherwise>
 
-	</c:choose>
-	</main>
+	</c:choose> </main>
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>
 	</footer>
-	
+
 </body>
 
 </html>

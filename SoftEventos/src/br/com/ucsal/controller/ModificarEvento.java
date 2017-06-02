@@ -38,25 +38,48 @@ public class ModificarEvento extends HttpServlet {
 		SimpleDateFormat fData = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
 
+		String dataString;
+		String horaCString;
+		String horaTString;
+
 		Date data = null;
-		Date hora = null;
+		Date horaC = null;
+		Date horaT = null;
 
 		try {
-
 			data = fData.parse(request.getParameter("data"));
-			hora = fHora.parse(request.getParameter("hora"));
-
 		} catch (Exception e) {
-			System.out.println("Erro: Cadastrar Evento - Hora e Data");
 			e.printStackTrace();
 		}
 
-		Evento evento = new Evento(request.getParameter("nome"), request.getParameter("local"), data, hora,
-				(Professor) request.getSession().getAttribute("conta"), request.getParameter("descricao"),
-				request.getParameter("organizador"), request.getParameter("palestrante"),
-				Integer.parseInt(request.getParameter("qtd")));
+		try {
+			horaC = fHora.parse(request.getParameter("hora_c"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		evento.setId(Integer.parseInt(request.getParameter("id")));
+		try {
+			horaT = fHora.parse(request.getParameter("hora_t"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String local = request.getParameter("local");
+
+		String descricao = request.getParameter("descricao");
+
+		String quantidadeString = request.getParameter("qtd");
+		Integer quantidade = "".equals(quantidadeString) ? Integer.parseInt(quantidadeString) : null;
+
+		Evento evento = EventoDAO.getEvento(Long.parseLong(request.getParameter("id")));
+
+		evento.setLocal(local == null ? evento.getLocal() : local);
+		evento.setDescricao(descricao == null ? evento.getDescricao() : descricao);
+		evento.setQuantidade(quantidade == null ? evento.getQuantidade() : quantidade);
+		evento.setData(data == null ? evento.getData() : data);
+		evento.setHoraComeco(horaC == null ? evento.getHoraComeco() : horaC);
+		evento.setHoraTermino(horaT == null ? evento.getHoraTermino() : horaT);
+
 		EventoDAO.modificarEvento(evento);
 
 		response.sendRedirect("eventos.jsp");

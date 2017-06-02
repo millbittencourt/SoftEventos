@@ -42,7 +42,7 @@ public class CadastrarAluno extends HttpServlet {
 			
 			ValidadorUtil.validarDadoUnicoConta(aluno.getLogin(), "login");
 			ValidadorUtil.validarDadoUnicoUsuario(aluno.getEmail(), "email");
-			//ValidadorUtil.validarDadoUnicoUsuario(aluno.getCpf(), "cpf");
+			ValidadorUtil.validarDadoUnicoUsuario(aluno.getCpf(), "cpf");
 
 			AlunoDAO.criarAluno(aluno);
 

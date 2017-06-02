@@ -10,6 +10,7 @@ public class ContaDAO {
 	private static EntityManager banco = BancoUtil.getInstancia().getConexcao().createEntityManager();
 
 	public static Conta autenticarConta(String login, String senha) throws NoResultException {
+		
 		Conta conta = null;
 
 		String hql = "SELECT con FROM Conta As con WHERE con.login=:login AND con.senha=:senha";
@@ -28,8 +29,11 @@ public class ContaDAO {
 	public static boolean isExisteParametro(Object parametro, String nomeParametro){
 
 		String hql = "SELECT con FROM Conta As con WHERE con." + nomeParametro + "=:" + nomeParametro;
-		Conta conta;
+		
+		Conta conta = null;
+		
 		banco.getTransaction().begin();
+		
 		try {
 			 conta = (Conta) banco.createQuery(hql).setParameter(nomeParametro, parametro).getSingleResult();		
 		} finally {

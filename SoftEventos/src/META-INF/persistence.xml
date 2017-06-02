@@ -25,8 +25,7 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/softeventos" />
 			<property name="javax.persistence.jdbc.user" value="softeventos" />
 			<property name="javax.persistence.jdbc.password" value="soft123" />
-			
-			
+			<property name="hibernate.connection.autocommit" value="true" />
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.show_sql" value="true" />

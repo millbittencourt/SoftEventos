@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import br.com.ucsal.model.Aluno;
+import br.com.ucsal.model.Evento;
 import br.com.ucsal.model.Inscricao;
 
 public class InscricaoDAO {
@@ -38,18 +39,18 @@ public class InscricaoDAO {
 
 	}
 
-	public static boolean isInscrito(Aluno aluno) {
-		
-		
+	public static boolean isInscrito(Aluno aluno, Evento evento) {
+
 		banco.getTransaction().begin();
 
-		String hql = "SELECT ins FROM Inscricao As ins WHERE ins.aluno=:aluno";
-		try{
-			Inscricao inscricao = (Inscricao) banco.createQuery(hql).setParameter("aluno", aluno).getSingleResult();
+		String hql = "SELECT ins FROM Inscricao As ins WHERE ins.aluno=:aluno and ins.evento=:evento";
+		try {
+			Inscricao inscricao = (Inscricao) banco.createQuery(hql).setParameter("aluno", aluno)
+					.setParameter("evento", evento).getSingleResult();
 			return inscricao != null;
-		}catch (NoResultException e) {
+		} catch (NoResultException e) {
 			return false;
-		}finally {
+		} finally {
 			banco.getTransaction().commit();
 		}
 	}

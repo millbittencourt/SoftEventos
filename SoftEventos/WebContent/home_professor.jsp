@@ -10,15 +10,13 @@
 <head>
 <meta charset="utf-8">
 <title>Home</title>
-<jsp:useBean id="conta" class="br.com.ucsal.model.Professor" scope="session"></jsp:useBean>
-<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
-<c:set var="professor" value="${conta}" scope="page">
-</c:set>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<c:import url="links.html"></c:import>
 
-<script src="js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
 
+<jsp:useBean id="conta" class="br.com.ucsal.model.Professor" scope="session"></jsp:useBean>
+<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
+<c:set var="professor" value="${conta}" scope="page"></c:set>
 </head>
 
 <body>
@@ -30,7 +28,8 @@
 	<main>
 
 	<section>
-		Professor <br> <br> Bem vindo: ${professor.nome}"
+		<h3>Professor</h3>
+		Bem vindo: ${professor.nome}"
 	</section>
 
 	<section>
@@ -40,45 +39,50 @@
 			<li><a href="deletar_conta.jsp"> Deletar Conta </a></li>
 		</ul>
 	</section>
+
 	<section>
-	<div id="qrcode" ></div>
-					
+		<div id="qrcode"></div>
+
 	</section>
+
 	<section>
 
 		<c:catch var="SemEvento">
 
 			<c:forEach items="${eventoDAO.getEventosProfessor(professor)}" var="evento">
-				
-				
+
+
 				<div class="evento" id="${evento.id}">
 					<img alt="${evento.nome}" src="img/${evento.id}">
-					
+
 					<div>
 						<h4>${evento.nome}</h4>
+					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais"> <img alt="${evento.nome}"
+						src="img/eventos/${evento.id}/principal" width="100%">
+					</a>
+					<div>
 						<ul>
 							<li>Dia: <fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
 							<li>Palestrante: ${evento.palestrante}</li>
 							<li>Local: ${evento.local}</li>
 						</ul>
 					</div>
-					
+
+
 					<c:if test="${true}">
 						<a href="GerarRelatorio?id=${evento.id}" alt="Gerar Relatório">
-							<button style="background-color: green">
-								Gerar Relatório
-							</button>
+							<button style="background-color: green">Gerar Relatório</button>
 						</a>
 					</c:if>
-			
+
 					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
-						<button> Ver Mais </button>
+						<button>Ver Mais</button>
 					</a>
-					
-					
-					<button class="qrclass" id="hb" value="${evento.qrcode}"> QRCode </button>
-					
-					
+
+
+					<button class="qrclass" id="hb" value="${evento.qrcode}">QRCode</button>
+
+
 				</div>
 			</c:forEach>
 
@@ -95,24 +99,25 @@
 	<footer>
 		<c:import url="footer.jsp"></c:import>
 	</footer>
-	
+
 	<script>
-	
-	$(document).ready(function() {
-		$(".qrclass").click(function() {
-			var $hash = $(this).attr("value");
-			$("#qrcode").empty();
-			jQuery('#qrcode').qrcode({
-				render	: "table",
-				text	: "Softeventos?id=" + $hash
-			});	
+		$(document).ready(function() {
+			$(".qrclass").click(function() {
+				var $hash = $(this).attr("value");
+				$("#qrcode").empty();
+				jQuery('#qrcode').qrcode("Softeventos?id=" + $hash);
+				alert("1");
+				doc.fromHTML($('#qrcode').html(), 15, 15, {
+					'width' : 170,
+					'elementHandlers' : specialElementHandlers
+				});
+				alert(doc);
+				doc.save('qrcode.jpg');
+			});
+
 		});
-	});
-	
-	
-	
 	</script>
-	
+
 </body>
 
 </html>

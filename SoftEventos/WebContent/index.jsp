@@ -7,8 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>SoftEventos</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="js/jquery-3.2.1.js"></script>
+<c:import url="links.html"></c:import>
 </head>
 
 <body>
@@ -28,7 +27,7 @@
 				<div id="cover-texto">
 					<h5>Evento Lorem</h5>
 					<p>Lorem ipsum dolor sit amet</p>
-					
+
 					<button id="btn-ver">Ver mais</button>
 				</div>
 
@@ -40,60 +39,64 @@
 						<i class="fa fa-angle-right"></i>
 					</button>
 				</div>
+
 			</div>
 		</div>
 
 	</section>
 
+
+	<section id="principal-eventos"></section>
+
+
 	<section id="sobre">
 		<div>
 			<h2>Quem somos nós?</h2>
-			<p>Praesent in mauris eu tortor porttitor accumsan. Mauris suscipit, ligula sit amet pharetra semper, nibh ante
-				cursus purus, vel sagittis velit mauris vel metus. Aenean fermentum risus id tortor. Integer imperdiet lectus quis
-				justo. Integer tempor. Vivamus ac urna vel leo pretium faucibus. Mauris elementum mauris vitae tortor. In dapibus
-				augue non sapien. Aliquam ante. Curabitur bibendum justo non orci. Nam quis nulla. Integer malesuada. In in enim a
-				arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem.
-				Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+				magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 		</div>
 	</section>
-	
-	
+
+
 	<section id="contato">
-		
-		<h3> Envie-nos uma mensagem</h3>
-		
+
+		<h2>Envie-nos uma mensagem</h2>
+
 		<form action="EnviarEmail">
+			<div>
+				<p>
+					<legend>
+						Nome: <span>*</span>
+					</legend>
+					<input type="text" name="nome" placeholder="Nome" required>
+				</p>
+				<p>
+					<legend>
+						Titulo:<span>*</span>
+					</legend>
+					<input type="text" name="titulo" placeholder="Titulo" required>
+				</p>
+			</div>
+
 			<p>
-			Nome:
-			<input type="text" name="nome" placeholder="Seu Nome" required>
-			</p><p>
-			Titulo:
-			<input type="text" name="titulo" placeholder="Titulo" required>
+				<legend>
+					Mensagem:<span>*</span>
+				</legend>
+				<textarea rows="10" cols="" placeholder="..." required></textarea>
 			</p>
-			<br>
-			Mensagem:
-			<textarea rows="10" cols="" placeholder="Sua Mensagem" required></textarea>
-			
-			<button type="submit"> Enviar </button>
+
+			<button type="submit" class="btn-az">Enviar</button>
 		</form>
 	</section>
-	
+
 	</main>
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>
 	</footer>
-
-
-	<script>
-		$(document).ready(function() {
-			$("#covxer").hover(function() {
-				$("#texto-imagem").slideToggle("slow");
-			});
-		});
-	</script>
-
 
 </body>
 

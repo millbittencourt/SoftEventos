@@ -7,11 +7,13 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<title>Modificar Evento</title>
 <jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
 <jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
+
+<meta charset="utf-8">
+<title>Modificar ${evento.nome}</title>
+<c:import url="links.html"></c:import>
 
 </head>
 
@@ -23,8 +25,6 @@
 
 	<main>
 	<section>
-
-		<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
 
 		<form action="ModificarEvento?id=${param.id}" method="post">
 		
@@ -49,9 +49,15 @@
 
 
 			<p>
-				Horário: <br> <input type="checkbox" value="c-hora"> <input id="c-hora" type="time" name="hora"
+				Horário Comeco: <br> <input type="checkbox" value="c-hora_c"> 
+				<input id="c-hora_c" type="time" name="hora_c"	placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
+ 			value="${evento.horaComeco}" />' disabled>
+			</p>
+
+			<p>
+				Horário Termino: <br> <input type="checkbox" value="c-hora_t"> <input id="c-hora_t" type="time" name="hora_t"
 					placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
- 			value="${evento.hora}" />' disabled>
+ 			value="${evento.horaTermino}" />' disabled>
 			</p>
 
 			<p>

@@ -11,10 +11,13 @@
 <meta charset="utf-8">
 <jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
 <c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
+
 <title>${evento.nome}</title>
+
 <jsp:useBean id="inscricaoDAO" class="br.com.ucsal.dao.InscricaoDAO"></jsp:useBean>
 <jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<c:import url="links.html"></c:import>
 </head>
 
 <body>
@@ -25,82 +28,114 @@
 
 	<main>
 
-	<section>
+	<section id="evento">
 
-		<div style="background-image: url('img/${evento.id}');">
+		<div class="evento-cover" style="background-image: url('img/eventos/${evento.id}/principal');">
 
-			<h1>${evento.nome}</h1>
+			<div>
 
-			<c:if test="<%=conta instanceof Aluno%>">
-				<c:choose>
-					
-					<c:when test="${!inscricaoDAO.isInscrito(conta)}">
+				<h1>${evento.nome}</h1>
+				<c:if test="<%=conta instanceof Aluno%>">
+					${inscricaoDAO.isInscrito(conta, evento)}
+						
+					<c:choose>
+						<c:when test="${!inscricaoDAO.isInscrito(conta, evento)}">
 
-						<button onclick="exbover()">increver-se</button>
+							<button onclick="over('ins')">increver-se</button>
 
-						<section id="overlay">
+							<section class="overlay" id="ins">
 
-							<div>
-								<h3>Você tem certeza que deseja se inverser no Evento: ${evento.nome}</h3>
+								<div onclick="over('ins')" class="over-back"></div>
+								<div class="over-conteudo">
+									<h3>Você tem certeza que deseja inscrever-se no Evento: ${evento.nome}</h3>
 
-								<a href="InscreverseEvento?id=${evento.id}">
-									<button>Sim</button>
-								</a>
-								<button onclick="fechover()">Não</button>
-							</div>
+									<a href="InscreverseEvento?id=${evento.id}">
+										<button>Sim</button>
+									</a>
+									<button onclick="over('ins')">Não</button>
+								</div>
 
-						</section>
+							</section>
 
-					</c:when>
+						</c:when>
 
-					<c:otherwise>
+						<c:otherwise>
 
-						<button onclick="exbover()">Desinscrever-se</button>
+							<button onclick="over('desi')">Desinscrever-se</button>
 
-						<section id="overlay">
+							<section class="overlay" id="desi">
 
-							<div>
-								<h3>Você tem certeza que deseja se desinsverser do Evento: ${evento.nome}</h3>
+								<div onclick="over('desi')" class="over-back"></div>
+								<div class="over-conteudo">
+									<h3>Você tem certeza que deseja desinscrever-se do Evento: ${evento.nome}</h3>
 
-								<a href="desinscrever?id=${param.id}">
-									<button>Desincrever-se</button>
-								</a>
+									<a href="desinscrever?id=${param.id}">
+										<button>Desincrever-se</button>
+									</a>
 
-								<button onclick="fechover()">Não</button>
-							</div>
+									<button onclick="over('desi')">Não</button>
+								</div>
 
-						</section>
+							</section>
 
-					</c:otherwise>
+						</c:otherwise>
 
-				</c:choose>
-			
-			</c:if>
+					</c:choose>
 
-			<c:if test="<%=conta instanceof Professor%>">
-				<c:if test="${evento.professor.id == conta.id}">
-					<a href="modificar_evento.jsp?id=${param.id}">
-						<button>Modificar Evento</button>
-					</a>
 				</c:if>
-			</c:if>
+
+				<c:if test="<%=conta instanceof Professor%>">
+					<c:if test="${evento.professor.id == conta.id}">
+						<a href="adm_evento.jsp?id=${param.id}">
+							<button>Administração do evento</button>
+						</a>
+					</c:if>
+				</c:if>
+
+			</div>
 
 		</div>
 
 		<div>
+			<table>
+				<tr>
+					<td>Palestrante:</td>
+					<td>${evento.palestrante}</td>
+				</tr>
+				<tr class="g">
+					<td>Organizador:</td>
+					<td>${evento.local}</td>
+				</tr>
+				<tr>
+					<td>Data:</td>
+					<td><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></td>
+				</tr>
+				<tr class="g">
+					<td>Horario de Começo:</td>
+					<td><fmt:formatDate pattern="HH:mm" value="${evento.horaComeco}" /></td>
+				</tr>
+				<tr class="g">
+					<td>Horario de Termino:</td>
+					<td><fmt:formatDate pattern="HH:mm" value="${evento.horaTermino}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Local:</td>
+					<td>${evento.local}</td>
+				</tr>
+				<tr class="g">
+					<td>Quantidade:</td>
+					<td>${evento.quantidade}</td>
+				</tr>
+				<tr>
+					<td>Professor:</td>
+					<td>${evento.professor.nome }</td>
+				</tr>
 
-			<ul>
-				<li>Palestrante: ${evento.palestrante}</li>
-				<li>Organizador: ${evento.local}</li>
-				<li>Data: <fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
-				<li>Horario: <fmt:formatDate pattern="HH:mm" value="${evento.hora}" /></li>
-				<li>Local: ${evento.local}</li>
-				<li>Quantidade: ${evento.quantidade}</li>
-				<li>Professor: ${evento.professor.nome }
-			</ul>
-
-			<p>${evento.descricao}</p>
-
+			</table>
+			<div  class="evento-desc">
+				<p>${evento.descricao}</p>
+			</div>
 		</div>
 
 	</section>
@@ -111,16 +146,6 @@
 		<c:import url="footer.jsp"></c:import>
 	</footer>
 
-	<script>
-		function exbover() {
-			document.getElementById("overlay").style.display = 'block';
-		}
-
-		function fechover() {
-			document.getElementById("overlay").style.display = 'none';
-
-		}
-	</script>
 
 </body>
 

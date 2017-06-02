@@ -33,26 +33,26 @@ public class CadastrarProfessor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try{
-			
-		Professor professor = new Professor(request.getParameter("login"), request.getParameter("senha"),
-				request.getParameter("nome"), request.getParameter("telefone"), request.getParameter("cpf"),
-				request.getParameter("email"), false);
+		try {
 
-		ValidadorUtil.validarDadoUnicoConta(professor.getLogin(), "login");
-		ValidadorUtil.validarDadoUnicoUsuario(professor.getEmail(), "email");
-		ValidadorUtil.validarDadoUnicoUsuario(professor.getCpf(), "cpf");
-		
-		ProfessorDAO.criarProfessor(professor);
-		
-		response.sendRedirect("index.jsp");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-	} catch (DadoUnicoJaExistenteExeption e) {
-		request.setAttribute("erro", e.getMessage().toString());
-		request.getRequestDispatcher("cadastrar_professor.jsp").forward(request, response);
+			Professor professor = new Professor(request.getParameter("login"), request.getParameter("senha"),
+					request.getParameter("nome"), request.getParameter("telefone"), request.getParameter("cpf"),
+					request.getParameter("email"), false);
 
-	}
+			ValidadorUtil.validarDadoUnicoConta(professor.getLogin(), "login");
+			ValidadorUtil.validarDadoUnicoUsuario(professor.getEmail(), "email");
+			ValidadorUtil.validarDadoUnicoUsuario(professor.getCpf(), "cpf");
+
+			ProfessorDAO.criarProfessor(professor);
+
+			response.sendRedirect("index.jsp");
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		} catch (DadoUnicoJaExistenteExeption e) {
+			request.setAttribute("erro", e.getMessage().toString());
+			request.getRequestDispatcher("cadastrar_professor.jsp").forward(request, response);
+
+		}
 	}
 
 	/**

@@ -39,23 +39,33 @@ public class CadastrarEvento extends HttpServlet {
 		SimpleDateFormat fData = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat fHora = new SimpleDateFormat("HH:mm");
 
+		String nome = request.getParameter("nome");
+		String local = request.getParameter("local");
+		Professor professor = (Professor) request.getSession().getAttribute("conta");
+		String descricao = request.getParameter("descricao");
+		String organizador = request.getParameter("organizador");
+		String palestrante = request.getParameter("palestrante");
+
+		String quantidadeString = request.getParameter("qtd");
+		Integer quantidade = "".equals(quantidadeString) ? Integer.parseInt(quantidadeString) : null;
+
 		Date data = null;
-		Date hora = null;
+		Date horaC = null;
+		Date horaT = null;
 
 		try {
 
 			data = fData.parse(request.getParameter("data"));
-			hora = fHora.parse(request.getParameter("hora"));
+			horaC = fHora.parse(request.getParameter("hora_c"));
+			horaT = fHora.parse(request.getParameter("hora_t"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		Evento evento = new Evento(request.getParameter("nome"), request.getParameter("local"), data, hora,
-				(Professor) request.getSession().getAttribute("conta"), request.getParameter("descricao"),
-				request.getParameter("organizador"), request.getParameter("palestrante"),
-				Integer.parseInt(request.getParameter("qtd")));
-		
+		Evento evento = new Evento(nome, local, data, horaC, horaT, professor, descricao, organizador, palestrante,
+				quantidade);
+
 		EventoDAO.criarEvento(evento);
 
 		response.sendRedirect("eventos.jsp");

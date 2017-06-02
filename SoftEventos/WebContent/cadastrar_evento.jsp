@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -8,7 +7,10 @@
 <head>
 <meta charset="utf-8">
 <title>Cadastrar Evento</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<c:import url="links.html"></c:import>
+<script src="js/jquery.mask.js"></script>
+<script src="js/masks.js"></script>
 </head>
 
 <body>
@@ -19,11 +21,13 @@
 
 	<main>
 
-	<section>
+	<section class="cadastro">
+		<h3>Evento</h3>
+
 		<form action="CadastrarEvento" method="post">
 
 			<span> ${erro} </span>
-
+			<div>
 			<p>
 				Nome: <br> <input type="text" name="nome" placeholder="Nome" required>
 			</p>
@@ -38,14 +42,13 @@
 
 
 			<p>
-				Horário: <br> <input type="time" name="hora" placeholder="Horário" required>
+				Horário Começo: <br> <input type="time" name="hora_c" placeholder="Horário" required>
 			</p>
-
+			
 			<p>
-				Descrição: <br>
-				<textarea rows="5" cols="15" name="descricao" placeholder="Decriçã o" required></textarea>
+				Horário Termino: <br> <input type="time" name="hora_t" placeholder="Horário" required>
 			</p>
-
+			
 			<p>
 				Organizador: <br> <input type="text" name="organizador" placeholder="Organizador" required>
 			</p>
@@ -55,9 +58,16 @@
 			</p>
 
 			<p>
-				Quantidade Máxima: <br> <input type="number" name="qtd">
+				Quantidade Máxima: <br> <input type="number" name="qtd" min="1">
 			</p>
-
+			
+			</div>
+			<p>
+				Descrição: <br>
+				<textarea rows="5" cols="15" name="descricao" placeholder="Decrição" required></textarea>
+			</p>
+			
+			
 			<button type="submit">Cadastrar</button>
 
 		</form>

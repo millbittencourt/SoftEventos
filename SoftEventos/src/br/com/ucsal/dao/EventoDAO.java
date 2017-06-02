@@ -17,8 +17,11 @@ public class EventoDAO {
 	public static void criarEvento(Evento ev) {
 
 		banco.getTransaction().begin();
-		banco.persist(ev);
-		banco.getTransaction().commit();
+		try {
+			banco.persist(ev);
+		} finally {
+			banco.getTransaction().commit();
+		}
 	}
 
 	public static List<Evento> getEventos() {
@@ -36,18 +39,23 @@ public class EventoDAO {
 	public static Evento getEvento(long id) {
 
 		banco.getTransaction().begin();
-		Evento evento = banco.find(Evento.class, id);
-		banco.getTransaction().commit();
-
-		return evento;
+		try {
+			Evento evento = banco.find(Evento.class, id);
+			return evento;
+		} finally {
+			banco.getTransaction().commit();
+		}
 
 	}
 
 	public static void modificarEvento(Evento evento) {
 
 		banco.getTransaction().begin();
-		banco.merge(evento);
-		banco.getTransaction().commit();
+		try {
+			banco.merge(evento);
+		} finally {
+			banco.getTransaction().commit();
+		}
 
 	}
 
@@ -68,8 +76,11 @@ public class EventoDAO {
 	public static void removerEvento(Evento evento) {
 
 		banco.getTransaction().begin();
-		banco.remove(evento);
-		banco.getTransaction().commit();
+		try {
+			banco.remove(evento);
+		} finally {
+			banco.getTransaction().commit();
+		}
 	}
 
 	public static void removerEventosProfessor(Professor professor) {
