@@ -1,4 +1,5 @@
 
+<%@page import="br.com.ucsal.model.Professor"%>
 <%@page import="javax.persistence.NoResultException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,6 +20,14 @@
 <c:set var="professor" value="${conta}" scope="page"></c:set>
 </head>
 
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="<%=!(conta instanceof Professor)%>">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+
+
 <body>
 
 	<header>
@@ -27,25 +36,32 @@
 
 	<main>
 
-	<section>
+	<section class="titulo">
 		<h3>Professor</h3>
-		Bem vindo: ${professor.nome}"
+		Bem vindo: ${professor.nome}
 	</section>
 
-	<section>
+	<section class="home-menu">
 		<ul>
-			<li><a href="modificar_conta.jsp"> Modificar Conta </a></li>
-			<li><a href="cadastrar_evento.jsp"> Cadastrar Eventos </a></li>
-			<li><a href="deletar_conta.jsp"> Deletar Conta </a></li>
+			<li><a href="modificar_conta.jsp"><button>Modificar Conta</button></a></li>
+			<li><a href="cadastrar_evento.jsp"><button>Cadastrar Eventos</button> </a></li>
+			<li><a href="deletar_conta.jsp"><button>Deletar Conta</button> </a></li>
 		</ul>
 	</section>
 
-	<section>
-		<div id="qrcode"></div>
-
+	<section class="overlay" id="qr">
+		<div onclick="over('qr')" class="over-back"></div>
+		<div class="over-conteudo">
+			<div id="qrcode"></div>
+			<a id="linkqrcode">
+				<button class="btn-az">
+					<i class="fa fa-download"></i>
+				</button>
+			</a>
+		</div>
 	</section>
 
-	<section>
+	<section id="eventos">
 
 		<c:catch var="SemEvento">
 
@@ -53,12 +69,9 @@
 
 
 				<div class="evento" id="${evento.id}">
-					<img alt="${evento.nome}" src="img/${evento.id}">
-
-					<div>
-						<h4>${evento.nome}</h4>
+					<h4>${evento.nome}</h4>
 					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais"> <img alt="${evento.nome}"
-						src="img/eventos/${evento.id}/principal" width="100%">
+						src="img/eventos/${evento.id}/principal" width="100%" onerror="this.src='img/sem-imagem.jpg'">
 					</a>
 					<div>
 						<ul>
@@ -69,20 +82,24 @@
 					</div>
 
 
-					<c:if test="${true}">
-						<a href="GerarRelatorio?id=${evento.id}" alt="Gerar Relatório">
-							<button style="background-color: green">Gerar Relatório</button>
-						</a>
-					</c:if>
-
 					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
 						<button>Ver Mais</button>
 					</a>
 
-
-					<button class="qrclass" id="hb" value="${evento.qrcode}">QRCode</button>
-
-
+					<c:choose>
+						<c:when test="${false}">
+							<a href="GerarRelatorio?id=${evento.id}" alt="Gerar Relatório">
+								<button>
+									Relatório <i class="fa fa-download"></i>
+								</button>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<button class="qrclass" id="hb" value="${evento.qrcode}">
+								QRCode <i class="fa fa-qrcode"></i>
+							</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</c:forEach>
 
@@ -101,21 +118,36 @@
 	</footer>
 
 	<script>
-		$(document).ready(function() {
-			$(".qrclass").click(function() {
-				var $hash = $(this).attr("value");
-				$("#qrcode").empty();
-				jQuery('#qrcode').qrcode("Softeventos?id=" + $hash);
-				alert("1");
-				doc.fromHTML($('#qrcode').html(), 15, 15, {
-					'width' : 170,
-					'elementHandlers' : specialElementHandlers
-				});
-				alert(doc);
-				doc.save('qrcode.jpg');
-			});
+		$(document)
+				.ready(
+						function() {
+							$(".qrclass")
+									.click(
+											function() {
 
-		});
+												var $hash = $(this).attr(
+														"value");
+												$("#qrcode").empty();
+
+												jQuery('#qrcode').qrcode(
+														"http://localhost:8080/SoftEventos/confirmar_presenca.jsp?qrcode="
+																+ $hash);
+
+												var canvas = document
+														.getElementById("qrcode").children;
+												var img = canvas[0].toDataURL();
+
+												var a = $("#linkqrcode").attr(
+														"href", img).attr(
+														"download",
+														"qrcode.png");
+
+												a.click();
+
+												over('qr');
+											});
+
+						});
 	</script>
 
 </body>

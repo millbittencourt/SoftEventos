@@ -11,7 +11,7 @@ public class BancoUtil {
 
 	private static BancoUtil instancia;
 
-	public BancoUtil() {
+	private BancoUtil() {
 
 	}
 

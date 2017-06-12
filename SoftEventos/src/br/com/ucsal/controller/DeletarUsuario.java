@@ -39,7 +39,7 @@ public class DeletarUsuario extends HttpServlet {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("conta");
 
 		if (usuario instanceof Aluno) {
-			InscricaoDAO.removerInscricaoAluno((Aluno) usuario);
+			InscricaoDAO.removerInscricoesAluno((Aluno) usuario);
 			
 		} else if (usuario instanceof Professor) {
 			EventoDAO.removerEventosProfessor((Professor) usuario);

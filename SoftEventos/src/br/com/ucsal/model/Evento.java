@@ -37,7 +37,7 @@ public class Evento {
 	@JoinColumn(name = "id_professor", referencedColumnName = "id")
 	private Professor professor;
 
-	@Column(length = 140)
+	@Column(columnDefinition="varchar(1000)")
 	private String descricao;
 	private String organizador;
 	private String palestrante;

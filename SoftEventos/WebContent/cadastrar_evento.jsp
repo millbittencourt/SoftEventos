@@ -1,3 +1,4 @@
+<%@page import="br.com.ucsal.model.Professor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -11,7 +12,17 @@
 <c:import url="links.html"></c:import>
 <script src="js/jquery.mask.js"></script>
 <script src="js/masks.js"></script>
+
+<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+
 </head>
+
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="<%=!(conta instanceof Professor)%>">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
 
 <body>
 
@@ -21,58 +32,83 @@
 
 	<main>
 
-	<section class="cadastro">
+	<div class="titulo">
 		<h3>Evento</h3>
+	</div>
+
+	<section class="cadastro">
 
 		<form action="CadastrarEvento" method="post">
+			<p>
+				<span> ${erro} </span>
+			</p>
+			<fieldset>
+				<legend> Dados Principais </legend>
+				<p>
+					<i> Nome </i> <input type="text" name="nome" placeholder="Nome" required> <span>*</span>
+				</p>
 
-			<span> ${erro} </span>
-			<div>
+				<p>
+					<i> Local </i> <input type="text" name="local" placeholder="Local" required><span>*</span>
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend> Sobre o evento </legend>
+				<p>
+					<i> Organizador </i> <input type="text" name="organizador" placeholder="Organizador" required><span>*</span>
+				</p>
+
+				<p>
+					<i> Palestrante </i> <input type="text" name="palestrante" placeholder="Palestante" required><span>*</span>
+				</p>
+			</fieldset>
+			<fieldset>
+				<legend> Data / Hora </legend>
+				<p>
+					<i> Data </i> <input type="date" name="data" placeholder="Data" required><span>*</span>
+				</p>
+
+				Horario:
+				<p class="input-peq">
+					<i> Horário Começo </i> <input type="time" name="hora_c" placeholder="Começo" required><span>*</span>
+				</p>
+
+				<p class="input-peq">
+					<i> Horário Termino</i> <input type="time" name="hora_t" placeholder="Termino" required><span>*</span>
+				</p>
+			</fieldset>
+			<fieldset class="input-top">
+				<legend> Quantidade </legend>
+				<p>
+					<i>Quantidade Máxima: </i> <input type="number" name="qtd" min="1" placeholder="Quantidade">
+				</p>
+			</fieldset>
+
 			<p>
-				Nome: <br> <input type="text" name="nome" placeholder="Nome" required>
+				Descrição:
+				<textarea rows="10" cols="" name="descricao" placeholder="..." required></textarea>
 			</p>
 
 			<p>
-				Local: <br> <input type="text" name="local" placeholder="Local" required>
+				<button type="submit" class="btn-az">Cadastrar</button>
+				<button type="reset" class="btn-az">Cancelar</button>
 			</p>
-
-			<p>
-				Date: <br> <input type="date" name="data" placeholder="Horário" required>
-			</p>
-
-
-			<p>
-				Horário Começo: <br> <input type="time" name="hora_c" placeholder="Horário" required>
-			</p>
-			
-			<p>
-				Horário Termino: <br> <input type="time" name="hora_t" placeholder="Horário" required>
-			</p>
-			
-			<p>
-				Organizador: <br> <input type="text" name="organizador" placeholder="Organizador" required>
-			</p>
-
-			<p>
-				Palestrante: <br> <input type="text" name="palestrante" placeholder="Palestante" required>
-			</p>
-
-			<p>
-				Quantidade Máxima: <br> <input type="number" name="qtd" min="1">
-			</p>
-			
-			</div>
-			<p>
-				Descrição: <br>
-				<textarea rows="5" cols="15" name="descricao" placeholder="Decrição" required></textarea>
-			</p>
-			
-			
-			<button type="submit">Cadastrar</button>
-
 		</form>
 	</section>
 	</main>
+
+	<script>
+		$(document).ready(function() {
+			$("input").keypress(function() {
+				$(this).prev().slideDown("fast");
+			});
+
+			$("input").blur(function() {
+				$(this).prev().slideUp("fast")
+			});
+		});
+	</script>
+
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>

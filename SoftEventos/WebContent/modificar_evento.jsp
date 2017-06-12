@@ -1,4 +1,5 @@
 
+<%@page import="br.com.ucsal.model.Professor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,6 +18,17 @@
 
 </head>
 
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="<%=!(conta instanceof Professor)%>">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="${evento.professor.id != conta.id}">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+
+
 <body>
 
 	<header>
@@ -25,69 +37,65 @@
 
 	<main>
 	<section>
+		<h3 class="titulo">Modificar Evento</h3>
+	</section>
 
-		<form action="ModificarEvento?id=${param.id}" method="post">
-		
-		<span> ${erro} </span>
+	<section>
 
+		<form action="ModificarEvento?id=${param.id}" method="post" class="cadastro">
 			<p>
-				Nome: <br> <input type="checkbox" value="c-nome"> <input id="c-nome" type="text" name="nome"
-					placeholder="Nome" value="${evento.nome}" style="display: none" disabled>
+				<span> ${erro} </span>
 			</p>
-
-
-			<p>
-				Local: <br> <input type="checkbox" value="c-local"> <input id="c-local" type="text" name="local"
-					placeholder="Local" value="${evento.local}" disabled>
-			</p>
-
-			<p>
-				Data: <br> <input type="checkbox" value="c-data"> <input id="c-data" type="date" name="data"
-					placeholder="Data" value="<fmt:formatDate pattern="yyyy-MM-dd" 
+			<fieldset>
+				<p>
+					Data: <br> <input type="checkbox" value="c-data"> <input id="c-data" type="date" name="data"
+						placeholder="Data" value="<fmt:formatDate pattern="yyyy-MM-dd" 
             value="${evento.data}" />" disabled>
-			</p>
+				</p>
 
 
-			<p>
-				Horário Comeco: <br> <input type="checkbox" value="c-hora_c"> 
-				<input id="c-hora_c" type="time" name="hora_c"	placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
+				<p class="input-peq">
+					Comeco: <br> <input type="checkbox" value="c-hora_c"> <input id="c-hora_c" type="time" name="hora_c"
+						placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
  			value="${evento.horaComeco}" />' disabled>
-			</p>
+				</p>
 
-			<p>
-				Horário Termino: <br> <input type="checkbox" value="c-hora_t"> <input id="c-hora_t" type="time" name="hora_t"
-					placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
+				<p class="input-peq">
+					Termino: <br> <input type="checkbox" value="c-hora_t"> <input id="c-hora_t" type="time" name="hora_t"
+						placeholder="Horário" value='<fmt:formatDate pattern="HH:mm"
  			value="${evento.horaTermino}" />' disabled>
-			</p>
+				</p>
+			</fieldset>
+
+			<fieldset>
+				<p>
+					Local: <br> <input type="checkbox" value="c-local"> <input id="c-local" type="text" name="local"
+						placeholder="Local" value="${evento.local}" disabled>
+				</p>
+			</fieldset>
+
+			<fieldset>
+				<p class="input-peq">
+					Quantidade Máxima: <br> <input type="checkbox" value="c-qtd"> <input id="c-qtd" type="number"
+						name="qtd" value="${(evento.quantidade == -1) ? 1 : evento.quantidade }" disabled>
+				</p>
+			</fieldset>
 
 			<p>
 				Descrição: <br> <input type="checkbox" value="c-descricao">
-				<textarea id="c-descricao" rows="5" cols="15" name="descricao" placeholder="Decrição" disabled>
- 			<c:out value="${evento.descricao}"></c:out>
- 			</textarea>
+				<textarea id="c-descricao" rows="10" name="descricao" placeholder="Decrição" disabled>${evento.descricao}</textarea>
 			</p>
+
+
+			</div>
 
 			<p>
-				Organizador: <br> <input type="checkbox" value="c-organizador"> <input id="c-organizador" type="text"
-					name="organizador" placeholder="Organizador" value="${evento.organizador}" disabled>
+				<button type="submit" class="btn-az">Modificar</button>
+
+				<a href="evento.jsp?id=${param.id}">
+					<button class="btn-az" type="button">Cancelar</button>
+				</a>
 			</p>
-
-			<p>
-				Palestrante: <br> <input type="checkbox" value="c-palestrante"> <input id="c-palestrante" type="text"
-					name="palestrante" placeholder="Palestante" value="${evento.palestrante}" disabled>
-			</p>
-
-			<p>
-				Quantidade Máxima: <br> <input type="checkbox" value="c-qtd"> <input id="c-qtd" type="number"
-					name="qtd" value="${evento.quantidade}" disabled>
-			</p>
-
-			<button type="submit">Modificar</button>
-
-			<a href="eventos.jsp">
-				<button>Cancelar</button>
-			</a>
-
 		</form>
 
 	</section>

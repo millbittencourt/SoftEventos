@@ -47,8 +47,9 @@ public class CadastrarEvento extends HttpServlet {
 		String palestrante = request.getParameter("palestrante");
 
 		String quantidadeString = request.getParameter("qtd");
-		Integer quantidade = "".equals(quantidadeString) ? Integer.parseInt(quantidadeString) : null;
-
+		Integer quantidade = quantidadeString.equals("") ? -1 : Integer.parseInt(quantidadeString) ;
+		
+		
 		Date data = null;
 		Date horaC = null;
 		Date horaT = null;
@@ -68,7 +69,7 @@ public class CadastrarEvento extends HttpServlet {
 
 		EventoDAO.criarEvento(evento);
 
-		response.sendRedirect("eventos.jsp");
+		response.sendRedirect("adm_evento.jsp?id="+evento.getId());
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 	}

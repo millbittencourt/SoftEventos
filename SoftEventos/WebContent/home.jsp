@@ -15,6 +15,8 @@
 <jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
 </head>
 
+<c:if test="${empty conta.login }"> <c:redirect url="404.html"></c:redirect> </c:if>
+
 <body>
 
 	<header>
@@ -48,12 +50,12 @@
 
 					<section>
 
-						<div>
+						<div class="titulo">
 							<h2>Sua conta Ainda não foi verificada. Volte Mais tarde</h2>
 							<h5>Softeventos</h5>
 							
 							<a href="index.jsp">
-								<button>Voltar</button>
+								<button class="btn-az">Voltar</button>
 							</a>
 						</div>
 

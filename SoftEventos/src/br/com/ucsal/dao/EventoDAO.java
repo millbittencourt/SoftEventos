@@ -90,5 +90,29 @@ public class EventoDAO {
 			removerEvento(evento);
 		}
 	}
+	
+	public static Evento getEventoQrcode(long qrcode){
+		String hql = "from Evento WHERE qrcode=:qrcode";
+		banco.getTransaction().begin();
+		Evento evento;
+		try {
+			evento = (Evento) banco.createQuery(hql).setParameter("qrcode", qrcode).getSingleResult();
+		} finally {
+			banco.getTransaction().commit();
+		}
+		return evento;
+	}
+	
+	public static List<Evento> getQtdEvento(int qtd){
+		String hql = "from Evento order by id desc";
+		List<Evento> eventosQtd = null;
+		banco.getTransaction().begin();
+		try {
+			eventosQtd = (List<Evento> ) banco.createQuery(hql).setMaxResults(qtd).getResultList();
+		} finally {
+			banco.getTransaction().commit();
+		}
+		return eventosQtd;
+	}
 
 }

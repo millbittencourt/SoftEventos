@@ -29,7 +29,7 @@ public class SairConta extends HttpServlet {
 		
 		request.getSession().removeAttribute("conta");
 
-		response.sendRedirect("index.jsp");
+		response.sendRedirect(request.getHeader("REFERER"));
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		}
 

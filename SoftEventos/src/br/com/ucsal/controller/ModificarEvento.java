@@ -69,7 +69,7 @@ public class ModificarEvento extends HttpServlet {
 		String descricao = request.getParameter("descricao");
 
 		String quantidadeString = request.getParameter("qtd");
-		Integer quantidade = "".equals(quantidadeString) ? Integer.parseInt(quantidadeString) : null;
+		Integer quantidade = "".equals(quantidadeString) ? -1 : Integer.parseInt(quantidadeString);
 
 		Evento evento = EventoDAO.getEvento(Long.parseLong(request.getParameter("id")));
 

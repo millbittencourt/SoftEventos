@@ -21,15 +21,19 @@
 	</header>
 
 	<main>
+	<section class="titulo">
+		<h3>Eventos <i class="fa fa-certificate"></i> </h3>
+	
+	</section>
+	
 	<section id="eventos">
-		<h3>Eventos</h3>
-<div>
+	<div>
 		<c:forEach items="${eventoDAO.getEventos()}" var="evento">
 
 			<div class="evento" id="${evento.id}">
 				<h4>${evento.nome}</h4>
 				<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
-				<img alt="${evento.nome}" src="img/eventos/${evento.id}/principal" width="100%">
+				<img alt="${evento.nome}" src="img/eventos/${evento.id}/principal" width="100%" onerror="this.src='img/sem-imagem.jpg'">
 				</a>
 				<div>
 					<ul>

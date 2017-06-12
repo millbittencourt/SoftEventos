@@ -6,12 +6,13 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Deletar Conta</title>
-	<c:import url="links.html"></c:import>
-	
-	<jsp:useBean id="conta" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>	
+<meta charset="utf-8">
+<title>Deletar Conta</title>
+<c:import url="links.html"></c:import>
+
+<jsp:useBean id="conta" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
 </head>
+<c:if test="${empty conta.login }"> <c:redirect url="404.html"></c:redirect> </c:if>
 
 <body>
 
@@ -21,28 +22,30 @@
 
 	<main>
 
-	<section>
+	<section class="cadastro">
 		<form action="#" method="POST">
-			<p>
-				Digite sua senha para confirmação: <br> <input type="password" name="senha" placeholder="Senha">
-			</p>
-			<button type="submit">Deletar conta</button>
+			<div>
+				<p>
+					Digite sua senha para confirmação: <br> <input type="password" name="senha" placeholder="Senha">
+				</p>
+			</div>
+			<button type="submit" class="btn-az">Deletar</button>
 
 		</form>
 	</section>
-
-	<section>
-		<c:if test="${param.senha==conta.senha}">
-			<div>
+	<c:if test="${param.senha==conta.senha}">
+		<section class="overlay" style="display: block">
+			<div class="over-back"></div>
+			<div class="over-conteudo">
 				<h3>Você tem certeza que deseja Deletar Sua conta</h3>
-
-				<a href="DeletarUsuario"> <button> Sim </button> </a> 
-				<a href="index.jsp"> <button> Não </button> </a>
+				<a href="DeletarUsuario">
+					<button class="btn-az">Sim</button>
+				</a> <a href="home.jsp">
+					<button class="btn-az">Não</button>
+				</a>
 			</div>
-		</c:if>
-	</section>
-
-	</main>
+		</section>
+	</c:if> </main>
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>

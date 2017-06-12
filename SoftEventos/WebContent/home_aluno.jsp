@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="br.com.ucsal.model.Aluno"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,14 @@
 <c:set var="aluno" value="${conta}" scope="page"></c:set>
 </head>
 
+
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="<%=!(conta instanceof Aluno)%>">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+
 <body>
 
 	<header>
@@ -24,54 +33,49 @@
 
 	<main>
 
-	<section>
+	<section class="titulo">
 		<h3>Aluno</h3>
 		Bem vindo: ${aluno.nome}
 	</section>
 
-	<section>
+	<section class="home-menu">
 		<ul>
-			<li><a href="modificar_conta.jsp"> Modificar Conta</a></li>
-			<li><a href="deletar_conta.jsp"> Deletar Conta </a></li>
+			<li><a href="modificar_conta.jsp"><button>Modificar Conta</button></a></li>
+			<li><a href="deletar_conta.jsp"><button>Deletar Conta</button> </a></li>
 		</ul>
 	</section>
 
-	<section>
+	<section id="eventos">
 
-		<c:catch var="SemEvento">
 
-			<c:forEach items="${inscricaoDAO.getInscricoesAluno(aluno)}" var="inscricao">
-
-				<c:set var="evento" value="${inscricao.evento}"></c:set>
-
-				<div class="evento" id="${evento.id}">
-					<h4>${evento.nome}</h4>
-					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais"> <img alt="${evento.nome}"
-						src="img/eventos/${evento.id}/principal" width="100%">
-					</a>
-					<div>
-						<ul>
-							<li>Dia: <fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
-							<li>Palestrante: ${evento.palestrante}</li>
-							<li>Local: ${evento.local}</li>
-						</ul>
-					</div>
-
-					<c:if test="${inscricao.presente}">
-						<a href="GerarCertificado?id=${evento.id}" alt="Gerar Certificado">
-							<button style="background-color: green">Gerar Certificado</button>
-						</a>
-					</c:if>
-
-					<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
-						<button>Ver Mais</button>
-					</a>
-
+		<c:forEach items="${inscricaoDAO.getInscricoesAluno(aluno)}" var="inscricao">
+			<c:set var="evento" value="${inscricao.evento}"></c:set>
+			<div class="evento" id="${evento.id}">
+				<h4>${evento.nome}</h4>
+				<a href="evento.jsp?id=${evento.id}" alt="Ver Mais"> <img alt="${evento.nome}"
+					src="img/eventos/${evento.id}/principal" width="100%" onerror="this.src='img/sem-imagem.jpg'">
+				</a>
+				<div>
+					<ul>
+						<li>Dia: <fmt:formatDate pattern="dd/MM/yyyy" value="${evento.data}" /></li>
+						<li>Palestrante: ${evento.palestrante}</li>
+						<li>Local: ${evento.local}</li>
+					</ul>
 				</div>
+				<a href="evento.jsp?id=${evento.id}" alt="Ver Mais">
+					<button>Ver Mais</button>
+				</a>
+				<c:if test="${inscricao.presente}">
+					<a href="GerarCertificado?id=${evento.id}" alt="Gerar Certificado">
+						<button>
+							Certificado <i class="fa fa-download"></i>
+						</button>
+					</a>
+				</c:if>
+			</div>
 
-			</c:forEach>
+		</c:forEach>
 
-		</c:catch>
 
 		<c:if test="${SemEvento != null}">
 			<div>

@@ -8,7 +8,6 @@
 <head>
 <meta charset="utf-8">
 <title>Cadastrar Professor</title>
-
 <c:import url="links.html"></c:import>
 <script src="js/jquery.mask.js"></script>
 <script src="js/masks.js"></script>
@@ -22,43 +21,68 @@
 
 	<main>
 
-	<section class="cadastro">
-		<h3>Professor</h3>
+	<section>
+		<div class="titulo">
+			<h3>
+				Professor <i class="fa fa-mortar-board"></i>
+			</h3>
+		</div>
 
-
-		<form action="CadastrarProfessor" method="post">
-
-			<span> ${erro} </span>
-
+		<form action="CadastrarProfessor" method="post" class="cadastro">
 			<p>
-				Login:<span>*</span> <br> <input type="text" name="login" placeholder="Login" required>
+				<span> ${erro} </span>
 			</p>
+			<fieldset class="input-med">
+				<legend> Informações Pessoais: </legend>
 
+				<p>
+					<i> Email </i> <input type="email" name="email" placeholder="Email" required><span>*</span>
+				</p>
+
+				<p>
+					<i> Nome</i> <input type="text" name="nome" placeholder="Nome" required><span>*</span>
+				</p>
+
+				<p>
+					<i>CPF</i> <input id="cpf" type="text" name="cpf" placeholder="CPF" required><span>*</span>
+				</p>
+
+				<p>
+					<i>Telefone</i> <input id="telefone" type="text" name="telefone" placeholder="Telefone" required><span>*</span>
+				</p>
+			</fieldset>
+
+			<fieldset class="input-top">
+				<legend> Informações Conta: </legend>
+
+				<p>
+					<i>Login</i> <input type="text" name="login" placeholder="Login" required><span>*</span>
+				</p>
+
+				<p>
+					<i>Senha</i> <input type="password" name="senha" placeholder="Senha" required> <span>*</span>
+				</p>
+			</fieldset>
 			<p>
-				Senha: <span>*</span> <br> <input type="password" name="senha" placeholder="Senha" required>
+				<button type="submit" class="btn-az">Cadastrar</button>
+				<button type="reset" class="btn-az">Cancelar</button>
 			</p>
-
-			<p>
-				Email: <span>*</span> <br> <input type="email" name="email" placeholder="Email" required>
-			</p>
-
-			<p>
-				Nome: <span>*</span> <br> <input type="text" name="nome" placeholder="Nome" required>
-			</p>
-
-			<p>
-				CPF: <span>*</span> <br> <input id="cpf" type="text" name="cpf" placeholder="CPF" required>
-			</p>
-
-			<p>
-				Telefone: <span>*</span> <br> <input id="telefone" type="text" name="telefone" placeholder="Telefone" required>
-			</p>
-
-			<button type="submit">Cadastrar</button>
 		</form>
 	</section>
-	
+
 	</main>
+
+	<script>
+		$(document).ready(function() {
+			$("input").keypress(function() {
+				$(this).prev().slideDown("fast");
+			});
+
+			$("input").blur(function() {
+				$(this).prev().slideUp("fast")
+			});
+		});
+	</script>
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>

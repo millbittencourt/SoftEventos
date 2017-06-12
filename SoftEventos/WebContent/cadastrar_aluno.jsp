@@ -12,6 +12,8 @@
 <c:import url="links.html"></c:import>
 <script src="js/jquery.mask.js"></script>
 <script src="js/masks.js"></script>
+
+<jsp:useBean id="cursoDAO" class="br.com.ucsal.dao.CursoDAO"></jsp:useBean>
 </head>
 
 <body>
@@ -22,50 +24,89 @@
 
 	<main>
 
-	<section class="cadastro">
-		<h3>Aluno</h3>
+	<section>
 
-		<form action="CadastrarAluno" method="post" class="form-horizontal">
+		<div class="titulo">
+			<h3>
+				Aluno <i class="fa fa-group"></i>
+			</h3>
+		</div>
 
-			<span> ${erro} </span>
-
-			<p class="form-group">
-				Login: <span>*</span> <br> <input type="text" name="login" placeholder="Login" required>
+		<form action="CadastrarAluno" method="post" class="cadastro">
+			<p>
+				<span> ${erro} </span>
 			</p>
 
-			<p class="col-sm-offset-2 col-sm-10">
-				Senha: <span>*</span> <br> <input type="password" name="senha" placeholder="Senha" required>
-			</p>
+			<fieldset class="input-med">
+				<legend> Informações Pessoais: </legend>
+
+				<p>
+					<i> Nome </i> <input type="text" name="nome" placeholder="Nome" required><span>*</span>
+				</p>
+
+				<p>
+					<i> Email </i> <input type="email" name="email" placeholder="Email" required><span>*</span>
+				</p>
+
+				<p>
+					<i> CPF </i> <input id="cpf" type="text" name="cpf" placeholder="CPF" required><span>*</span>
+				</p>
+
+				<p>
+					<i> Telefone </i> <input id="telefone" type="text" name="telefone" placeholder="Telefone" required><span>*</span>
+				</p>
+
+
+			</fieldset>
+
+			<fieldset class="input-top">
+				<legend> Informações Curriculares: </legend>
+
+				<p>
+					Curso <select name="curso" required>
+						<c:forEach items="${cursoDAO.getCursos()}" var="curso">
+							<option>${curso.nome}</option>
+						</c:forEach>
+					</select><span>*</span>
+				</p>
+
+				<p>
+					<i> Turma </i> <input id="turma" type="text" name="turma" placeholder="Turma" required><span>*</span>
+				</p>
+			</fieldset>
+
+			<fieldset>
+				<legend> Informações Conta: </legend>
+
+				<p>
+					<i> Login </i> <input type="text" name="login" placeholder="Login" required><span>*</span>
+				</p>
+
+				<p>
+					<i> Senha </i> <input type="password" name="senha" placeholder="Senha" required><span>*</span>
+				</p>
+			</fieldset>
 
 			<p>
-				Nome: <span>*</span> <br> <input type="text" name="nome" placeholder="Nome" required>
+				<button type="submit" class="btn-az">Cadastrar</button>
+				<button type="reset" class="btn-az">Cancelar</button>
 			</p>
-
-			<p>
-				Email: <span>*</span> <br> <input type="email" name="email" placeholder="Email" required>
-			</p>
-
-			<p>
-				CPF: <span>*</span> <br> <input id="cpf" type="text" name="cpf" placeholder="CPF" required>
-			</p>
-
-			<p>
-				Telefone: <span>*</span> <br> <input id="telefone" type="text" name="telefone" placeholder="Telefone" required>
-			</p>
-
-			<p>
-				Curso: <span>*</span> <br> <input type="text" name="curso" placeholder="Curso" required>
-			</p>
-
-			<p>
-				Turma: <span>*</span> <br> <input type="text" name="turma" placeholder="Turma" required>
-			</p>
-
-			<button type="submit">Cadastrar</button>
-
 		</form>
 	</section>
 	</main>
+
+	<script>
+		$(document).ready(function() {
+			$("input").keypress(function() {
+				$(this).prev().slideDown("fast");
+			});
+
+			$("input").blur(function() {
+				$(this).prev().slideUp("fast")
+			});
+
+		});
+	</script>
 
 	<footer>
 		<c:import url="footer.jsp"></c:import>

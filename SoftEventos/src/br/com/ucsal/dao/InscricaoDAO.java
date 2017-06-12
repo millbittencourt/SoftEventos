@@ -27,6 +27,7 @@ public class InscricaoDAO {
 
 		String hql = "from Inscricao WHERE aluno=:aluno";
 		List<Inscricao> inscricoes = null;
+
 		banco.getTransaction().begin();
 		try {
 			inscricoes = (List<Inscricao>) banco.createQuery(hql).setParameter("aluno", aluno).getResultList();
@@ -61,13 +62,66 @@ public class InscricaoDAO {
 		banco.getTransaction().commit();
 	}
 
-	public static void removerInscricaoAluno(Aluno aluno) {
-		List<Inscricao> inscricoes = getInscricoesAluno(aluno);
+	public static void removerInscricao(Aluno aluno, Evento evento) {
+		banco.getTransaction().begin();
 
-		for (Inscricao inscricao : inscricoes) {
-			removerInscricao(inscricao);
+		String hql = "Delete Inscricao As ins WHERE ins.aluno=:aluno and ins.evento=:evento";
+		try {
+			banco.createQuery(hql).setParameter("aluno", aluno).setParameter("evento", evento).executeUpdate();
+
+		} finally {
+			banco.getTransaction().commit();
+		}
+	}
+
+	public static void removerInscricoesAluno(Aluno aluno) {
+		banco.getTransaction().begin();
+
+		String hql = "Delete Inscricao As ins WHERE ins.aluno=:aluno";
+		try {
+			banco.createQuery(hql).setParameter("aluno", aluno).executeUpdate();
+		} finally {
+			banco.getTransaction().commit();
 		}
 
+	}
+
+	public static void confirmarPresenca(Aluno aluno, Evento evento) {
+		banco.getTransaction().begin();
+
+		String hql = "update Inscricao As ins set ins.presente=:presente WHERE ins.aluno=:aluno and ins.evento=:evento";
+		try {
+			banco.createQuery(hql).setParameter("presente", true).setParameter("aluno", aluno)
+					.setParameter("evento", evento).executeUpdate();
+		} finally {
+			banco.getTransaction().commit();
+		}
+
+	}
+
+	public static List<Inscricao> getEmailsAlunosEvento(Evento evento) {
+		banco.getTransaction().begin();
+
+		String hql = "from Inscricao where evento=:evento";
+		List<Inscricao> inscricoes = null;
+		try {
+			inscricoes = (List<Inscricao>) banco.createQuery(hql).setParameter("evento", evento).getResultList();
+		} finally {
+			banco.getTransaction().commit();
+		}
+		return inscricoes;
+	}
+
+	public static long getQtdInscricoesEvento(Evento evento) {
+		banco.getTransaction().begin();
+		long qtd = 0;
+		try {
+			qtd = (long) banco.createQuery("select count(*) from Inscricao where evento=:evento")
+					.setParameter("evento", evento).getSingleResult();
+		} finally {
+			banco.getTransaction().commit();
+		}
+		return qtd;
 	}
 
 }

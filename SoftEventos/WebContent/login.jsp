@@ -1,16 +1,23 @@
-<form method="POST" action="AutenticarConta" class="login" >
-
-	<span id="erro"> ${erro} </span>
+<form method="POST" action="AutenticarConta" class="login">
 	<div>
+	<span id="erro"> ${erro} </span>
 	<p>
-		Login: <span>*</span> <br> <input type="text" name="login" placeholder="Login">
+		Login
+		<i></i>
+		<input type="text" name="login" placeholder="Login"> <span>*</span>
 	</p>
 
 	<p>
-		Senha: <span>*</span> <br> <input type="password" name="senha" placeholder="Senha">
+		Senha 
+		<i></i>
+		<input type="password" name="senha" placeholder="Senha"> <span>*</span>
+
 	</p>
+	<br>
 	</div>
-	
-	<button type="submit" class="btn-az">Entrar</button>
-
+	<p>
+		<button id="login-btn" type="submit" class="btn-az">
+			Entrar <i class="fa fa-sign-in"></i>
+		</button>
+	</p>
 </form>

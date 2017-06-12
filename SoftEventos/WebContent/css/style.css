@@ -17,7 +17,7 @@ html, body {
 
 body {
 	font-family: "Open Sans", sans-serif;
-	background-color: #ddd;
+	background-color: #eee;
 }
 
 header {
@@ -40,7 +40,7 @@ footer {
 }
 
 h1, h2, h3 {
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 	font-weight: 500;
 	color: inherit;
@@ -58,6 +58,31 @@ form legend {
 	margin: 3px;
 }
 
+form div {
+	max-width: 350px;
+}
+
+input {
+	width: calc(100% - 40px);
+	font-size: 0.9em;
+}
+
+::-webkit-input-placeholder {
+	font-size: 0.9em
+}
+
+::-moz-placeholder {
+	font-size: 0.9em
+}
+
+:-ms-input-placeholder {
+	font-size: 0.9em
+}
+
+:-moz-placeholder {
+	font-size: 0.9em
+}
+
 input, textarea {
 	box-sizing: border-box;
 	border: 1px solid #9ea6c1;
@@ -66,8 +91,48 @@ input, textarea {
 	font-size: 1em;
 }
 
+select {
+	border: none;
+	padding: 0.5rem;
+	background-color: #e5e5e5;
+	width: calc(100% - 40px);
+}
+
+select:after {
+	content: "▼";
+	position: absolute;
+}
+
+textarea {
+	width: 90%;
+}
+
 input:focus, textarea:focus {
-	border-color: red;
+	border: 1px solid red;
+}
+
+progress {
+	border: none;
+	width: 100%;
+	height: 1rem;
+	background-color: #bbb;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) INSET;
+}
+
+progress[value] {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+::-moz-progress-bar {
+	background-color: #08174d;
+}
+
+form span {
+	display: inline-block;
+	color: red;
+	font-size: 17px;
+	margin: 3px;
 }
 
 /* Navegador */
@@ -88,8 +153,8 @@ nav {
 
 #logo img {
 	z-index: 3;
-	width: 6rem;
-	margin-left: 1rem;
+	width: 9rem;
+	margin-left: 0.5rem;
 }
 
 @media ( min-width : 630px) {
@@ -97,7 +162,7 @@ nav {
 		display: inline-block;
 	}
 	#all-buttons {
-		width: calc(100% - 7rem);
+		width: calc(100% - 9.5rem);
 		height: 100%;
 	}
 	#contexto-button {
@@ -124,13 +189,13 @@ nav {
 		width: 5rem;
 		font-size: 1.15em;
 		background-color: transparent;
-		transition: 0.5s;
+		transition: 0.2s;
 		border: none;
 		cursor: pointer;
 	}
 	#contexto-button ul li button:hover {
-		transition: 0.3s;
-		background-color: rgba(100, 100, 100, 0.2);
+		transition: 0.2s;
+		color: #4a70f9;
 	}
 	#conta-button {
 		float: right;
@@ -253,33 +318,59 @@ nav {
 #cover-imagem {
 	display: block;
 	width: 100%;
-	height: 30rem;
+	height: 30pc;
 	background-color: #777;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
 	z-index: 5;
 }
 
-#cover-all {
+@media ( min-width : 630px) {
+	#cover-imagem {
+		height: 35pc;
+	}
+}
+
+@media ( max-height : 490px) {
+	#cover-imagem {
+		height: 25pc;
+	}
+}
+
+.cover-all {
 	z-index: 1;
 	text-align: center;
 	width: 100%;
 	height: 100%;
 	position: relative;
-	background-color: rgba(150, 150, 150, 0.2);
+	background-color: rgba(100, 100, 100, 0.2);
 }
 
-#cover-all button {
+.cover-all button {
 	color: #fff;
 	background-color: transparent;
 }
 
-#cover-texto {
+
+.point{
+	margin-top: 1rem;
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
+.cover-texto {
 	position: absolute;
 	width: 100%;
 	bottom: 1rem;
+	display: none;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cover-texto h4, .cover-texto h3 {
+	font-weight: lighter;
 }
 
 #btn-ver {
@@ -289,7 +380,7 @@ nav {
 	padding: 0.5rem;
 }
 
-#cover-buttons {
+.cover-buttons {
 	top: 50%;
 	position: absolute;
 	width: 100%;
@@ -303,6 +394,7 @@ nav {
 	padding: 0 1rem;
 	cursor: pointer;
 	transition: 0.3s;
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 #btn-ant:hover, #btn-prox:hover, #btn-ver:hover {
@@ -329,7 +421,17 @@ nav {
 	height: 25%;
 }
 
+#principal-eventos {
+	
+}
+
+#principal-eventos .eventos {
+	width: 2rem;
+	height: 1rem;
+}
+
 #sobre {
+	margin: 2rem 0;
 	background-color: #fff;
 	padding: 2rem;
 	color: #444;
@@ -364,6 +466,8 @@ nav {
 	border-radius: 5px;
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 	text-align: left;
+	border-top-right-radius: 8rem;
+	margin-bottom: 3rem;
 }
 
 #contato textarea {
@@ -373,16 +477,11 @@ nav {
 	position: relative;
 }
 
-form div {
-	max-width: 300px;
-}
-
-input {
-	width: 100%;
-}
-
 #contato button {
-	width: 5rem;
+	float: right;
+	font-size: 2em;
+	width: 10rem;
+	font-size: 2em;
 }
 
 .btn-az {
@@ -394,11 +493,12 @@ input {
 	height: 100%;
 	transition: 0.2s;
 	border-radius: 3px;
+	width: 7rem;
 }
 
 .btn-az:hover {
 	transition: 0.2s;
-	background-color: #c9ccd6;
+	background-color: #ddd;
 	color: #08174d;
 }
 
@@ -431,17 +531,18 @@ input {
 .over-conteudo {
 	background-color: #fff;
 	margin: auto;
-	max-width: 700px;
-	padding: 2rem;
+	max-width: 500px;
 	border-radius: 10px;
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-	text-align: center;
 	position: relative;
 	top: 3rem;
-	height: 20rem;
 	z-index: 3;
 	padding: 3rem;
 	text-align: center;
+}
+
+.login {
+	padding: 1rem;
 }
 
 .login div {
@@ -449,20 +550,69 @@ input {
 	margin: auto;
 }
 
-form span {
-	color: red;
-}
-
 #login-form input {
 	max-width: 100%;
 }
 
+input, select, textarea {
+	box-sizing: content-box;
+	border: none;
+	border-radius: 0;
+	background-color: #e5e5e5;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+fieldset {
+	margin: 1rem;
+	text-align: center;
+	display: inline-block;
+	padding-left: 1rem;
+	border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.input-top {
+	vertical-align: top;
+}
+
+.input-peq{
+	display: inline-block;
+	max-width: 100px; 
+}
+
+.cadastro {
+	text-align: center;
+	background-color: #fff;
+	max-width: 47rem;
+	margin: 2rem auto;
+	padding: 1rem;
+	height: 100%;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+}
+
+.cadastro input, select {
+	margin-top: 1.5em;
+}
+
+.cadastro p i {
+	font-size: 0.8em;
+	position: absolute;
+	display: none;
+}
+
 #eventos {
-	width: 90%;
+	width: 100%;
 	background-color: #fff;
 	margin: auto;
 	text-align: center;
-	border-radius: 10px;
+	margin-bottom: 2rem;
+	padding: 5rem 1rem;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 #eventos h3 {
@@ -470,7 +620,6 @@ form span {
 	padding: 2rem 0;
 	width: 100%;
 	background-color: #eee;
-	border-radius: 10px;
 	font-size: 2em;
 }
 
@@ -481,13 +630,18 @@ form span {
 	margin: 1rem;
 	color: #08174d;
 	display: inline-block;
-	box-sizing: border-box;
+	border: 1px solid rgba(8, 23, 77, 0.1);
+}
+
+.evento h4 {
+	padding: 0.5rem;
 }
 
 .evento:hover {
 	transition: 0.5s;
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5), 0 5px 8px 0
 		rgba(0, 0, 0, 0.5);
+	border: none;
 }
 
 @media ( min-width : 851px) {
@@ -519,7 +673,8 @@ form span {
 	width: 100%;
 	padding: 0.5rem;
 	color: #08174d;
-	background-color: #ccc;
+	background-color: #ddd;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .evento button:hover {
@@ -528,61 +683,97 @@ form span {
 	background-color: #08174d;
 }
 
-#evento {
-	width: 90%;
-	margin: auto;
-}
-
-#evento table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#evento tr {
-	padding: 0.5rem;
-}
-
-#evento table .g {
-	background-color: #ddd;
-}
-
-#evento table td {
-	width: 50%;
-	padding: 0.5rem;
-}
-
-#evento table {
-	background-color: #eee;
-}
-
-#evento table tr td:FIRST-CHILD {
-	text-align: right;
-}
-
-#evento table {
-	margin: auto;
+.evento-p {
+	width: 7rem;
+	transition: 0.5s;
 	background-color: #fff;
-	padding: 1rem;
+	text-align: center;
+	margin: 1rem;
 	color: #08174d;
+	display: inline-block;
+	border: 1px solid rgba(8, 23, 77, 0.1);
+	font-size: 0.5em;
 }
 
-.evento-desc {
-	padding: 1rem 5rem;
-	color: #444;
+.evento-p h4 {
+	font-size: 3em;
+}
+
+.evento-p ul {
+	list-style-type: none;
+	padding: 1rem;
+}
+
+.evento-p img {
 	width: 100%;
-	background-color: #eee;
+	height: 7rem;
+	object-fit: cover;
 }
 
-#evento div p {
-	text-indent: 2em;
-	text-align: justify;
-	font-size: 1em;
+.titulo {
+	max-width: 30rem;
+	margin: 1rem auto;
+	padding: 1rem;
+	text-align: center;
+	font-size: 2em;
+	color: #08174d;
+	text-align: center;
+}
+
+.painel {
+	background-color: #fff;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.home-menu {
+	margin: 2rem;
+	text-align: center;
+}
+
+.home-menu ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.home-menu ul li {
+	display: inline-block;
+	margin: 0.5rem;
+}
+
+.home-menu ul li a {
+	width: 5rem;
+	background-color: #fff;
+	color: #08174d;
+	text-decoration: none;
+}
+
+.home-menu button {
+	width: 10rem;
+	padding: 1rem;
+	border: none;
+	background-color: #fff;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+	transition: 0.2s;
+}
+
+.home-menu button:hover {
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+	transition: 0.2s;
+}
+
+#qr button {
+	width: 50%;
+}
+
+#evento {
+	margin: auto;
+	width: 90%;
 }
 
 .evento-cover {
 	display: block;
 	width: 100%;
-	height: 30rem;
+	height: 35rem;
 	background-color: #777;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -596,10 +787,10 @@ form span {
 	width: 100%;
 	color: #fff;
 	background-color: rgba(0, 0, 0, 0.3);
-	background: -webkit-linear-gradient(bottom, rgba(0,0,0,0), #111);
-	background: -o-linear-gradient(bottom, rgba(0,0,0,0), #111);
-	background: -moz-linear-gradient(bottom, rgba(0,0,0,0), #111);
-	background: linear-gradient(bottom, rgba(0,0,0,0), #111);
+	background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
+	background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
+	background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
+	background: linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
 }
 
 .evento-cover div h1 {
@@ -623,8 +814,138 @@ form span {
 	background-color: rgba(255, 255, 255, 0.5);
 }
 
+.evento-desc {
+	display: inline-block;
+	background-color: #ddd;
+	color: #444;
+	width: 65%;
+	min-height: 25rem;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3) inset;
+}
+
+.evento-desc p {
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	padding: 1rem;
+	text-indent: 2em;
+	text-align: justify;
+	font-size: 1em;
+	margin: 0;
+}
+
+.evento-info {
+	width: 100%;
+	background-color: #fff;
+}
+
+.evento-info table {
+	border-collapse: collapse;
+	background-color: #fff;
+	color: #08174d;
+	width: 35%;
+	display: inline-table;
+	font-size: 0.8em;
+	min-height: 20rem;
+	margin: 0;
+}
+
+.evento-info table tr {
+	padding: 0.5rem;
+}
+
+.evento-info table .g {
+	background-color: rgba(50, 50, 50, 0.05);
+}
+
+.evento-info table td {
+	padding: 0.5rem;
+}
+
+.evento-info table tr td:FIRST-CHILD {
+	width: 50%;
+	text-decoration: blink;
+}
+
+@media ( max-width : 630px) {
+	.evento-desc {
+		width: 100%
+	}
+	.evento-info table {
+		width: 100%
+	}
+}
+
+.alunos, .professores{
+	display: none;
+	padding: 3rem;
+	width: 49%;
+	display: inline-block;
+}
+
+.alunos{
+	background-color: #ddd;	
+}
+
+.professores{
+	background-color: #aaa;
+}
+
+.usuario{
+	display: inline-block;
+	margin: 1rem;
+	background-color: #fff;
+	width: 15rem;
+	height: 8rem;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+}
+.usuario i{
+	position: absolute;
+	display: inline-block;
+	font-size: 3em;
+	padding: 1.5rem;
+	color: #08174d;
+	
+}
+.usuario ul{
+	background-color: #aaa;
+	color: #08174d;
+	text-align: left;
+	height: 6rem;
+	padding: 1rem;
+	margin-left: 6rem;
+	list-style: none;
+}
+
+.usuario div{
+	width: 100%;
+	background-color: #ddd;
+}
+
+.usuario a{
+	margin: 0;
+	width: 49%;
+	text-decoration: none;
+}
+
+.usuario button{
+	transition: 0.5s;
+	border: none;
+	width: 49%;
+	display: inline-block;
+	padding: 0.5rem;
+	color: #08174d;
+	background-color: #ddd;
+}
+
+.usuario button:hover {
+	transition: 0.5s;
+	color: #ddd;
+	background-color: #08174d;
+}
+
 footer {
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7) inset;
 }
 
 #footer {
@@ -635,7 +956,20 @@ footer {
 	padding-top: 1rem;
 }
 
+#footer a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#footer a:hover {
+	color: #4a70f9;
+}
+
 #footer i {
-	display: block;
+	color: #fff;
 	font-size: 2rem;
+}
+
+#footer a i:hover {
+	color: #4a70f9;
 }

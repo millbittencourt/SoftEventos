@@ -12,6 +12,11 @@
 <jsp:useBean id="conta" class="br.com.ucsal.model.Usuario" scope="session"></jsp:useBean>
 </head>
 
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+
+
 <body>
 
 	<header>
@@ -20,36 +25,38 @@
 
 	<main>
 
-	<section>
+	<section class="cadastro">
 		<form action="ModificarConta" method="post">
 
 			<span> ${erro} </span>
-			<div>
+
+			<fieldset>
 				<p>
 
-					Login: <br> <input type="checkbox" value="c-login"> <input id="c-login" type="text" name="login"
+					Login: <input type="checkbox" value="c-login"><br> <input id="c-login" type="text" name="login"
 						placeholder="Login" value="${conta.login}" disabled>
 				</p>
 
 				<p>
-					Senha: <br> <input type="checkbox" value="c-senha"> <input id="c-senha" type="password" name="senha"
-						placeholder="Senha" value="${conta.senha}" disabled>
+					Senha: <input type="checkbox" value="c-senha"> <br>
+					<input id="c-senha" type="password" name="senha" placeholder="Senha" value="" disabled>
 				</p>
 
 				<p>
-					Email: <br> <input type="checkbox" value="c-email"> <input id="c-email" type="email" name="email"
+					Email: <input type="checkbox" value="c-email"><br> <input id="c-email" type="email" name="email"
 						placeholder="Email" value="${conta.email}" disabled>
 				</p>
 
 
 				<p>
-					Telefone: <br> <input type="checkbox" value="c-telefone"> <input id="c-telefone" type="text"
+					Telefone: <input type="checkbox" value="c-telefone"> <br> <input id="c-telefone" type="text"
 						name="telefone" placeholder="Telefone" value="${conta.telefone}" disabled>
 				</p>
 
-			</div>
-			<button type="submit">Modificar</button>
-
+			</fieldset>
+			<p>
+				<button type="submit" class="btn-az">Modificar</button>
+			</p>
 
 		</form>
 	</section>

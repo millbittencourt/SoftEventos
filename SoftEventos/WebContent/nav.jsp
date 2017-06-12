@@ -19,11 +19,11 @@
 				<li><a href="eventos.jsp">
 						<button>Eventos</button>
 				</a></li>
-				<li><a href="#sobre">
+				<li><a href="index.jsp#sobre">
 						<button>Sobre</button>
 				</a></li>
-				<li><a href="#contato">
-						<button>Contato</button>
+				<li><a href="index.jsp#contato">
+						<button>Contato </button>
 				</a></li>
 			</ul>
 
@@ -34,7 +34,7 @@
 
 				<c:when test="${conta.login == null}">
 
-					<button onclick="over('log')">Login</button>
+					<button onclick="over('log')">Login <i class="fa fa-sign-in"></i></button>
 
 					<div id="btn-cadastro">
 
@@ -55,7 +55,7 @@
 					</a>
 
 					<a href="SairConta">
-						<button>Sair</button>
+						<button>Sair <i class="fa fa-sign-out"></i></button>
 					</a>
 
 				</c:when>
@@ -79,9 +79,9 @@
 
 <script>
 	$(document).ready(function() {
-		$("#btn-cadastro").hover(function() {
-			$(".cadastros").slideToggle("fast");
-		});
+// 		$("#btn-cadastro").hover(function() {
+// 			$(".cadastros").slideToggle("fast");
+// 		});
 
 		$("#btn-cadastro").click(function() {
 			$(".cadastros").slideToggle("fast");

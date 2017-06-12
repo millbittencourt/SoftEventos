@@ -1,4 +1,5 @@
 
+<%@page import="br.com.ucsal.model.Professor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -7,16 +8,26 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	
-	<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
-	<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>	
-	<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
-	
-	<title>Administrar ${evento.nome}</title>
-	
-	<c:import url="links.html"></c:import>
+<meta charset="utf-8">
+
+<jsp:useBean id="eventoDAO" class="br.com.ucsal.dao.EventoDAO"></jsp:useBean>
+<jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
+<c:set var="evento" value="${eventoDAO.getEvento(param.id)}"></c:set>
+
+<title>Administrar ${evento.nome}</title>
+
+<c:import url="links.html"></c:import>
 </head>
+
+<c:if test="${empty conta.login }">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="<%=!(conta instanceof Professor)%>">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
+<c:if test="${evento.professor.id != conta.id}">
+	<c:redirect url="404.html"></c:redirect>
+</c:if>
 
 <body>
 
@@ -26,55 +37,57 @@
 
 	<main>
 	<section id="evento-img">
-		
-		<div id="cover-imagem" style= "background-image:  url('img/eventos/${evento.id}/principal');">
 
-			<div id="cover-all">
+		<div id="cover-imagem" style="background-image:  url('img/eventos/${evento.id}/principal');"></div>
+		<h4 class="titulo">${evento.nome}</h4>
 
-				<div id="cover-texto">
-					<h5>${evento.nome}</h5>
-				</div>
+	</section>
+
+	<section class="cadastro">
+		Modificar a imagem do evento:
+		<form method="post" action="UploadImagemEvento" enctype="multipart/form-data">
+
+			<input type="text" name="id" style="display: none" value="${evento.id}"> <input type="file" name="uploadFile">
+			<br><br>
+			<button type="submit" class="btn-az">
+				Enviar <i class="fa fa-upload"></i>
+			</button>
+		</form>
+		<br> <br> Modificar valores evento:<br> <a href="modificar_evento.jsp?id=${evento.id}">
+			<button class="btn-az">
+				Modificar <i class="fa fa-edit"></i>
+			</button>
+		</a>
+	</section>
+
+	<section id="contato">
+		<h3 class="titulo">Envie uma mensagem para seus Inscritos</h3>
+		<form action="EnviarEmailParaAlunos?id=${evento.id}" method="post">
+			<span id="erro"> ${erro} </span>
+			<div>
+				<p>
+					<legend>
+						Titulo:<span>*</span>
+					</legend>
+					<input type="text" name="titulo" placeholder="Titulo" required>
+				</p>
 			</div>
-		</div>
 
-		<p>
-			<form method="post" action="UploadImagemEvento" enctype="multipart/form-data">
-				<input type="text" name="id" style="display: none" value="${evento.id}"> 
-				<input type="file" name="uploadFile">
-				<button type="submit"> Enviar </button>
-			</form>
-		</p>
-	</section>
-	
-	<section id="modificar">
-		Modifique:
-		<a href="modificar_evento.jsp?id=${evento.id}"><button> Modificar </button></a>
-	</section>
-	
-	<section id="estatisticas">
-		${evento.id}
-	</section>
+			<p>
+				<legend>
+					Mensagem:<span>*</span>
+				</legend>
+				<textarea rows="10" cols="" placeholder="..." required></textarea>
+			</p>
+			<p>
 
-	<section id="evento-email">
-		<form action="#">
-			<p>
-				Nome:
-				<input type="text" name="nome" placeholder="Seu Nome" required>
+				<button type="submit" class="btn-az">
+					<i class="fa fa-send"></i>
+				</button>
 			</p>
-			
-			<p>
-				Titulo:
-				<input type="text" name="titulo" placeholder="Titulo" required>
-			</p>
-			
-			<br>
-			Mensagem:
-			<textarea rows="10" cols="" placeholder="Sua Mensagem" required></textarea>
-			
-			<button type="submit"> Enviar </button>
 		</form>
 	</section>
-	
+
 	</main>
 
 	<footer>

@@ -54,7 +54,7 @@ public class UploadImagemEvento extends HttpServlet {
 
 		// System.out.println(request.getContextPath());
 
-		dirImgEventos = "img" + File.pathSeparator + "eventos";
+		dirImgEventos = "img" + File.separator + "eventos";
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(MEMORY_THRESHOLD);
@@ -65,7 +65,7 @@ public class UploadImagemEvento extends HttpServlet {
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 
-		String uploadPath = getServletContext().getRealPath("") + File.pathSeparator + dirImgEventos;
+		String uploadPath = getServletContext().getRealPath("") + File.separator + dirImgEventos;
 		String id = "";
 
 		// System.out.println(uploadPath);
@@ -82,14 +82,14 @@ public class UploadImagemEvento extends HttpServlet {
 					}
 				}
 
-				uploadPath += File.pathSeparator + id;
+				uploadPath += File.separator + id;
 
 				File uploadDir = new File(uploadPath);
 				if (!uploadDir.exists()) {
 					uploadDir.mkdir();
 				}
 
-				// System.out.println(uploadPath);
+				System.out.println(uploadPath);
 
 				for (FileItem item : formItems) {
 

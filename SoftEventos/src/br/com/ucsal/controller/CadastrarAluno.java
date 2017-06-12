@@ -46,7 +46,7 @@ public class CadastrarAluno extends HttpServlet {
 
 			AlunoDAO.criarAluno(aluno);
 
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("index.jsp");
 			response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		} catch (DadoUnicoJaExistenteExeption e) {

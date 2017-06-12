@@ -29,74 +29,82 @@
 	<main>
 
 	<section id="evento">
-
+		<c:set var="inscritos" value="${inscricaoDAO.getQtdInscricoesEvento(evento)}"></c:set>
 		<div class="evento-cover" style="background-image: url('img/eventos/${evento.id}/principal');">
 
 			<div>
 
 				<h1>${evento.nome}</h1>
-				<c:if test="<%=conta instanceof Aluno%>">
-					${inscricaoDAO.isInscrito(conta, evento)}
-						
-					<c:choose>
-						<c:when test="${!inscricaoDAO.isInscrito(conta, evento)}">
+				<c:if test="${!(empty conta.login)}">
 
-							<button onclick="over('ins')">increver-se</button>
+					<c:if test="<%=conta instanceof Aluno%>">
 
-							<section class="overlay" id="ins">
 
-								<div onclick="over('ins')" class="over-back"></div>
-								<div class="over-conteudo">
-									<h3>Você tem certeza que deseja inscrever-se no Evento: ${evento.nome}</h3>
+						<c:choose>
+							<c:when test="${!inscricaoDAO.isInscrito(conta, evento)}">
+								<c:choose>
+									<c:when test="${evento.quantidade == -1 || inscritos < evento.quantidade}">
+										<button onclick="over('ins')">increver-se</button>
 
-									<a href="InscreverseEvento?id=${evento.id}">
-										<button>Sim</button>
-									</a>
-									<button onclick="over('ins')">Não</button>
-								</div>
+										<section class="overlay" id="ins">
 
-							</section>
+											<div onclick="over('ins')" class="over-back"></div>
+											<div class="over-conteudo">
+												<h3>Você tem certeza que deseja inscrever-se no Evento: ${evento.nome}</h3>
 
-						</c:when>
+												<a href="InscreverseEvento?id=${evento.id}">
+													<button>Sim</button>
+												</a>
+												<button onclick="over('ins')">Não</button>
+											</div>
 
-						<c:otherwise>
+										</section>
+									</c:when>
+									<c:otherwise>
+										<h4>Evento Lotado</h4>
+									</c:otherwise>
+								</c:choose>
 
-							<button onclick="over('desi')">Desinscrever-se</button>
+							</c:when>
 
-							<section class="overlay" id="desi">
+							<c:otherwise>
 
-								<div onclick="over('desi')" class="over-back"></div>
-								<div class="over-conteudo">
-									<h3>Você tem certeza que deseja desinscrever-se do Evento: ${evento.nome}</h3>
+								<button onclick="over('desi')">Desinscrever-se</button>
 
-									<a href="desinscrever?id=${param.id}">
-										<button>Desincrever-se</button>
-									</a>
+								<section class="overlay" id="desi">
 
-									<button onclick="over('desi')">Não</button>
-								</div>
+									<div onclick="over('desi')" class="over-back"></div>
+									<div class="over-conteudo">
+										<h3>Você tem certeza que deseja desinscrever-se do Evento: ${evento.nome}</h3>
 
-							</section>
+										<a href="DesinscreverseEvento?id=${param.id}">
+											<button>Desincrever-se</button>
+										</a>
 
-						</c:otherwise>
+										<button onclick="over('desi')">Não</button>
+									</div>
 
-					</c:choose>
+								</section>
 
-				</c:if>
+							</c:otherwise>
 
-				<c:if test="<%=conta instanceof Professor%>">
-					<c:if test="${evento.professor.id == conta.id}">
-						<a href="adm_evento.jsp?id=${param.id}">
-							<button>Administração do evento</button>
-						</a>
+						</c:choose>
+
 					</c:if>
-				</c:if>
 
+					<c:if test="<%=conta instanceof Professor%>">
+						<c:if test="${evento.professor.id == conta.id}">
+							<a href="adm_evento.jsp?id=${param.id}">
+								<button>Administração do evento</button>
+							</a>
+						</c:if>
+					</c:if>
+			</c:if>
 			</div>
-
 		</div>
 
-		<div>
+		<div class="evento-info">
+
 			<table>
 				<tr>
 					<td>Palestrante:</td>
@@ -104,7 +112,7 @@
 				</tr>
 				<tr class="g">
 					<td>Organizador:</td>
-					<td>${evento.local}</td>
+					<td>${evento.organizador}</td>
 				</tr>
 				<tr>
 					<td>Data:</td>
@@ -114,26 +122,34 @@
 					<td>Horario de Começo:</td>
 					<td><fmt:formatDate pattern="HH:mm" value="${evento.horaComeco}" /></td>
 				</tr>
-				<tr class="g">
+				<tr>
 					<td>Horario de Termino:</td>
 					<td><fmt:formatDate pattern="HH:mm" value="${evento.horaTermino}" /></td>
 				</tr>
-				
-				<tr>
+
+				<tr class="g">
 					<td>Local:</td>
 					<td>${evento.local}</td>
 				</tr>
+				<c:if test="${evento.quantidade != -1}">
+					<tr>
+						<td>Quantidade:</td>
+						<td>${evento.quantidade}</td>
+					</tr>
+					<tr>
+						<td>Inscritos:</td>
+						<td>${inscritos}</td>
+					</tr>
+					<tr>
+						<td colspan="2"><progress value="${inscritos}" max="${evento.quantidade}"></progress></td>
+					</tr>
+				</c:if>
 				<tr class="g">
-					<td>Quantidade:</td>
-					<td>${evento.quantidade}</td>
-				</tr>
-				<tr>
 					<td>Professor:</td>
 					<td>${evento.professor.nome }</td>
 				</tr>
 
-			</table>
-			<div  class="evento-desc">
+			</table><div class="evento-desc">
 				<p>${evento.descricao}</p>
 			</div>
 		</div>
