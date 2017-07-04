@@ -100,7 +100,7 @@
 
 		<h2>Envie-nos uma mensagem</h2>
 
-		<form action="EnviarEmail" method="Post">
+		<form action="EnviarEmailParaAdmin" method="Post">
 			<div>
 				<p>
 					<legend>

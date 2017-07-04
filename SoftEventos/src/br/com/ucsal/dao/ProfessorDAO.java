@@ -1,8 +1,11 @@
 package br.com.ucsal.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import br.com.ucsal.model.Aluno;
 import br.com.ucsal.model.Professor;;
 
 public class ProfessorDAO {
@@ -30,6 +33,20 @@ public class ProfessorDAO {
 		banco.getTransaction().begin();
 		banco.merge(professor);
 		banco.getTransaction().commit();
+	}
+	
+	public static List<Professor> getProfessoresNaoVerificados() {
+
+		String hql = "from Professor where verificado=:verificado";
+		List<Professor> professores = null;
+
+		banco.getTransaction().begin();
+		try {
+			professores = (List<Professor>) banco.createQuery(hql).setParameter("verificado", false).getResultList();
+		} finally {
+			banco.getTransaction().commit();
+		}
+		return professores;
 	}
 
 }

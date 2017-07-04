@@ -54,5 +54,11 @@ public class ContaDAO {
 		banco.merge(conta);
 		banco.getTransaction().commit();
 	}
+	
+	public static void adm(Conta conta){
+		banco.getTransaction().begin();
+		banco.persist(conta);
+		banco.getTransaction().commit();
+	}	
 
 }

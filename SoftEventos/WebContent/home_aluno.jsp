@@ -66,7 +66,7 @@
 					<button>Ver Mais</button>
 				</a>
 				<c:if test="${inscricao.presente}">
-					<a href="GerarCertificado?id=${evento.id}" alt="Gerar Certificado">
+					<a href="pdf/certificado/${conta.id}/certificado.pdf" type="d" alt="Gerar Certificado" download>
 						<button>
 							Certificado <i class="fa fa-download"></i>
 						</button>

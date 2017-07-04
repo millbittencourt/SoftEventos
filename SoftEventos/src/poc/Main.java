@@ -1,15 +1,9 @@
 package poc;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.mail.internet.AddressException;
-
-import br.com.ucsal.dao.AlunoDAO;
-import br.com.ucsal.model.Aluno;
-import br.com.ucsal.model.Usuario;
-import br.com.ucsal.util.mail.EnviarEmail;
+import br.com.ucsal.model.Certificado;
 
 public class Main {
 
@@ -17,19 +11,29 @@ public class Main {
 		alunoX();
 	}
 
-	public static void alunoX() {
+	public static void alunoX() throws FileNotFoundException {
 
-		List<String> destinatarios = new ArrayList<>();
+		// List<String> destinatarios = new ArrayList<>();
+		//
+		// destinatarios.add("softeventoucsal@gmail.com");
+		// destinatarios.add("alan10sou@gmail.com");
+		//
+		// try {
+		// EnviarEmail.simples(" Morte ", "<p> algo algo algo algo lago </p>",
+		// "text/html", destinatarios);
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 
-		destinatarios.add("softeventoucsal@gmail.com");
-		destinatarios.add("alan10sou@gmail.com");
-
-		try {
-			EnviarEmail.simples(" Morte ", "<p> algo algo algo algo lago </p>", "text/html",  destinatarios);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// Administrador adm = new Administrador("admin","admin", 1);
+		// ContaDAO.adm(adm);
+		
+		Certificado ce = new Certificado();
+		ce.setNomeEvento("algo");
+		ce.getLocal();
+		
+		String pasta = "pidiefi.pdf";
 	}
 
 }

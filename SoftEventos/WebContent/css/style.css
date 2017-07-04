@@ -559,6 +559,11 @@ input, select, textarea {
 	border: none;
 	border-radius: 0;
 	background-color: #e5e5e5;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.3) inset;
+}
+
+input:DISABLED, select:disabled, textarea:disabled {
+	box-shadow: none;
 }
 
 select {
@@ -781,7 +786,7 @@ fieldset {
 }
 
 .evento-cover div {
-	padding: 1rem;
+	padding: 1.5rem;
 	width: 100%;
 	color: #fff;
 	width: 100%;
@@ -789,7 +794,7 @@ fieldset {
 	background-color: rgba(0, 0, 0, 0.3);
 	background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
 	background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
-	background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
+	background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
 	background: linear-gradient(bottom, rgba(0, 0, 0, 0), #111);
 }
 
@@ -949,6 +954,8 @@ footer {
 }
 
 #footer {
+	width: 100%;
+	bottom: 3rem;
 	text-align: center;
 	padding-top: 1rem;
 	text-align: center;

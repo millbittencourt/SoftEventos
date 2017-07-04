@@ -15,6 +15,7 @@
 <jsp:useBean id="usuarioDAO" class="br.com.ucsal.dao.UsuarioDAO"></jsp:useBean>
 <jsp:useBean id="conta" class="br.com.ucsal.model.Conta" scope="session"></jsp:useBean>
 <jsp:useBean id="alunoDAO" class="br.com.ucsal.dao.AlunoDAO"></jsp:useBean>
+<jsp:useBean id="professorDAO" class="br.com.ucsal.dao.ProfessorDAO"></jsp:useBean>
 </head>
 
 <c:if test="${empty conta.login }">
@@ -39,7 +40,7 @@
 	<section>
 		<div class="alunos">
 			<h3 class="titulo">Alunos</h3>
-			<c:forEach items="${alunoDAO.getAlunosNaoVerificado()}" var="usu">
+			<c:forEach items="${alunoDAO.getAlunosNaoVerificados()}" var="usu">
 				<div class="usuario" id="${usu.id}">
 					<i class="fa fa-group"></i>
 					<ul>
@@ -58,7 +59,7 @@
 		</div>
 		<div class="professores">
 			<h3 class="titulo">Professores</h3>
-			<c:forEach items="${alunoDAO.getAlunosNaoVerificado()}" var="usu">
+			<c:forEach items="${professorDAO.getProfessoresNaoVerificados()}" var="usu">
 				<div class="usuario" id="${usu.id}">
 					<i class="fa fa-mortar-board"></i>
 					<ul>

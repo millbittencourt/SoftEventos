@@ -24,6 +24,8 @@
 	</header>
 
 	<main>
+	
+	<h3 class="titulo">Modificar Conta</h3>
 
 	<section class="cadastro">
 		<form action="ModificarConta" method="post">
@@ -56,6 +58,8 @@
 			</fieldset>
 			<p>
 				<button type="submit" class="btn-az">Modificar</button>
+				<a href="home.jsp"><button type="button" class="btn-az"> Cancelar</button></a>
+				
 			</p>
 
 		</form>

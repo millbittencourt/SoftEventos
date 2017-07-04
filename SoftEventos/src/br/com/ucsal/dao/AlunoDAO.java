@@ -37,7 +37,7 @@ public class AlunoDAO {
 
 	}
 
-	public static List<Aluno> getAlunosNaoVerificado() {
+	public static List<Aluno> getAlunosNaoVerificados() {
 
 		String hql = "from Aluno where verificado=:verificado";
 		List<Aluno> alunos = null;

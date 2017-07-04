@@ -46,7 +46,7 @@ public class UploadImagemEvento extends HttpServlet {
 		if (!ServletFileUpload.isMultipartContent(request)) {
 
 			PrintWriter writer = response.getWriter();
-			writer.println("Erro: Tu é demente??");
+			writer.println("Erro: form errado");
 			writer.flush();
 			return;
 
