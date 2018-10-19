@@ -1,2 +1,0 @@
-CREATE DATABASE edumovel;
-GRANT ALL PRIVILEGES ON edumovel.* TO edumovel@localhost IDENTIFIED BY 'eud123' WITH GRANT OPTION;
